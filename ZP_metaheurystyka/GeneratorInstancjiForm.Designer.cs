@@ -41,8 +41,8 @@ namespace ZP_metaheurystyka
             this.PrzerwyTextBox = new System.Windows.Forms.TextBox();
             this.MutacjeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.SekwencjeTextBox = new System.Windows.Forms.TextBox();
+            this.ZapiszButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,15 +153,6 @@ namespace ZP_metaheurystyka
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wygenerowana instancja";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(382, 772);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(192, 51);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Zapisz";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // SekwencjeTextBox
             // 
             this.SekwencjeTextBox.Location = new System.Drawing.Point(25, 40);
@@ -172,13 +163,23 @@ namespace ZP_metaheurystyka
             this.SekwencjeTextBox.TabIndex = 0;
             this.SekwencjeTextBox.WordWrap = false;
             // 
+            // ZapiszButton
+            // 
+            this.ZapiszButton.Location = new System.Drawing.Point(382, 763);
+            this.ZapiszButton.Name = "ZapiszButton";
+            this.ZapiszButton.Size = new System.Drawing.Size(192, 51);
+            this.ZapiszButton.TabIndex = 12;
+            this.ZapiszButton.Text = "Zapisz";
+            this.ZapiszButton.UseVisualStyleBackColor = true;
+            this.ZapiszButton.Click += new System.EventHandler(this.ZapiszButton_Click);
+            // 
             // GeneratorInstancjiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(978, 844);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ZapiszButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MutacjeTextBox);
             this.Controls.Add(this.PrzerwyTextBox);
@@ -217,6 +218,6 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.TextBox MutacjeTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox SekwencjeTextBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ZapiszButton;
     }
 }

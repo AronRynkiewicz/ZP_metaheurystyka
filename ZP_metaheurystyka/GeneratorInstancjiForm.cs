@@ -12,9 +12,17 @@ namespace ZP_metaheurystyka
 {
     public partial class GeneratorInstancjiForm : Form
     {
-        public GeneratorInstancjiForm()
+        public GeneratorInstancjiClass generator = new GeneratorInstancjiClass(0, 0, "ACGT", 0, 0);
+        public GeneratorInstancjiForm(GeneratorInstancjiClass Generator)
         {
             InitializeComponent();
+            generator = Generator;
+
+            this.LiczbaSekwencjiTextBox.Text = Generator.LiczbaSekwencji.ToString();
+            this.DlugoscSekwencjiTextBox.Text = Generator.DlugoscSekwencji.ToString();
+            this.AlfabetTextBox.Text = new string(Generator.Alfabet.ToArray());
+            this.PrzerwyTextBox.Text = Generator.ProcentPrzerw.ToString();
+            this.MutacjeTextBox.Text = Generator.LiczbaMutacji.ToString();
         }
 
         public bool SprawdzParametry()
@@ -96,12 +104,12 @@ namespace ZP_metaheurystyka
 
             if (PoprawneDane)
             {
-                GeneratorInstancjiClass generator = new GeneratorInstancjiClass(
-                    Int32.Parse(this.LiczbaSekwencjiTextBox.Text),
-                    Int32.Parse(this.DlugoscSekwencjiTextBox.Text),
-                    this.AlfabetTextBox.Text,
-                    Int32.Parse(this.PrzerwyTextBox.Text),
-                    Int32.Parse(this.MutacjeTextBox.Text));
+                generator.LiczbaSekwencji = Int32.Parse(this.LiczbaSekwencjiTextBox.Text);
+                generator.DlugoscSekwencji = Int32.Parse(this.DlugoscSekwencjiTextBox.Text);
+                generator.Alfabet = new List<char>();
+                generator.Alfabet.AddRange(this.AlfabetTextBox.Text);
+                generator.ProcentPrzerw = Int32.Parse(this.PrzerwyTextBox.Text);
+                generator.LiczbaMutacji = Int32.Parse(this.MutacjeTextBox.Text);
 
                 generator.WygenerujInstancje();
                 this.SekwencjeTextBox.Text = "";
@@ -110,6 +118,12 @@ namespace ZP_metaheurystyka
                     this.SekwencjeTextBox.Text += generator.Sekwencje[i] + System.Environment.NewLine;
                 }
             }
+        }
+
+        private void ZapiszButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("Dane zostały zapisane!");
+            this.Close();
         }
     }
 }

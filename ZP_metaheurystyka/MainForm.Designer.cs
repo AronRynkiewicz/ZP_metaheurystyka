@@ -43,7 +43,18 @@ namespace ZP_metaheurystyka
             this.MainPopulacjaTextBox = new System.Windows.Forms.TextBox();
             this.MainKrzyzowanieTextBox = new System.Windows.Forms.TextBox();
             this.MainMutacjeTextBox = new System.Windows.Forms.TextBox();
+            this.MainLiczbaSekwencjiTextBox = new System.Windows.Forms.TextBox();
+            this.MainDlugoscSekwencjiTextBox = new System.Windows.Forms.TextBox();
+            this.MainAlfabetTextBox = new System.Windows.Forms.TextBox();
+            this.MainPrzerwyTextBox = new System.Windows.Forms.TextBox();
+            this.MainMutacjeNaSekwencjeTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.ParametryGroupBox.SuspendLayout();
+            this.SekwencjeGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // GeneratorInstancjiButton
@@ -144,6 +155,16 @@ namespace ZP_metaheurystyka
             // 
             // SekwencjeGroupBox
             // 
+            this.SekwencjeGroupBox.Controls.Add(this.label6);
+            this.SekwencjeGroupBox.Controls.Add(this.label9);
+            this.SekwencjeGroupBox.Controls.Add(this.label8);
+            this.SekwencjeGroupBox.Controls.Add(this.label7);
+            this.SekwencjeGroupBox.Controls.Add(this.label5);
+            this.SekwencjeGroupBox.Controls.Add(this.MainMutacjeNaSekwencjeTextBox);
+            this.SekwencjeGroupBox.Controls.Add(this.MainPrzerwyTextBox);
+            this.SekwencjeGroupBox.Controls.Add(this.MainAlfabetTextBox);
+            this.SekwencjeGroupBox.Controls.Add(this.MainDlugoscSekwencjiTextBox);
+            this.SekwencjeGroupBox.Controls.Add(this.MainLiczbaSekwencjiTextBox);
             this.SekwencjeGroupBox.ForeColor = System.Drawing.SystemColors.Window;
             this.SekwencjeGroupBox.Location = new System.Drawing.Point(558, 32);
             this.SekwencjeGroupBox.Name = "SekwencjeGroupBox";
@@ -194,6 +215,96 @@ namespace ZP_metaheurystyka
             this.MainMutacjeTextBox.Size = new System.Drawing.Size(100, 26);
             this.MainMutacjeTextBox.TabIndex = 13;
             // 
+            // MainLiczbaSekwencjiTextBox
+            // 
+            this.MainLiczbaSekwencjiTextBox.Enabled = false;
+            this.MainLiczbaSekwencjiTextBox.Location = new System.Drawing.Point(281, 36);
+            this.MainLiczbaSekwencjiTextBox.Name = "MainLiczbaSekwencjiTextBox";
+            this.MainLiczbaSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainLiczbaSekwencjiTextBox.TabIndex = 14;
+            // 
+            // MainDlugoscSekwencjiTextBox
+            // 
+            this.MainDlugoscSekwencjiTextBox.Enabled = false;
+            this.MainDlugoscSekwencjiTextBox.Location = new System.Drawing.Point(281, 78);
+            this.MainDlugoscSekwencjiTextBox.Name = "MainDlugoscSekwencjiTextBox";
+            this.MainDlugoscSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainDlugoscSekwencjiTextBox.TabIndex = 15;
+            // 
+            // MainAlfabetTextBox
+            // 
+            this.MainAlfabetTextBox.Enabled = false;
+            this.MainAlfabetTextBox.Location = new System.Drawing.Point(281, 123);
+            this.MainAlfabetTextBox.Name = "MainAlfabetTextBox";
+            this.MainAlfabetTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainAlfabetTextBox.TabIndex = 16;
+            // 
+            // MainPrzerwyTextBox
+            // 
+            this.MainPrzerwyTextBox.Enabled = false;
+            this.MainPrzerwyTextBox.Location = new System.Drawing.Point(281, 167);
+            this.MainPrzerwyTextBox.Name = "MainPrzerwyTextBox";
+            this.MainPrzerwyTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainPrzerwyTextBox.TabIndex = 17;
+            // 
+            // MainMutacjeNaSekwencjeTextBox
+            // 
+            this.MainMutacjeNaSekwencjeTextBox.Enabled = false;
+            this.MainMutacjeNaSekwencjeTextBox.Location = new System.Drawing.Point(281, 209);
+            this.MainMutacjeNaSekwencjeTextBox.Name = "MainMutacjeNaSekwencjeTextBox";
+            this.MainMutacjeNaSekwencjeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainMutacjeNaSekwencjeTextBox.TabIndex = 18;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(15, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 20);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Liczba sekwencji";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Window;
+            this.label7.Location = new System.Drawing.Point(15, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Alfabet";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.Window;
+            this.label8.Location = new System.Drawing.Point(15, 173);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 20);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Procent przerw";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.Window;
+            this.label9.Location = new System.Drawing.Point(15, 215);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(242, 20);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Liczba mutacji w jednej sekwencji";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Window;
+            this.label6.Location = new System.Drawing.Point(15, 84);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(140, 20);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Długość sekwencji";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -215,6 +326,8 @@ namespace ZP_metaheurystyka
             this.Load += new System.EventHandler(this.MinForm_Load);
             this.ParametryGroupBox.ResumeLayout(false);
             this.ParametryGroupBox.PerformLayout();
+            this.SekwencjeGroupBox.ResumeLayout(false);
+            this.SekwencjeGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -235,6 +348,16 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.TextBox MainPopulacjaTextBox;
         private System.Windows.Forms.TextBox MainIteracjeTextBox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox MainMutacjeNaSekwencjeTextBox;
+        private System.Windows.Forms.TextBox MainPrzerwyTextBox;
+        private System.Windows.Forms.TextBox MainAlfabetTextBox;
+        private System.Windows.Forms.TextBox MainDlugoscSekwencjiTextBox;
+        private System.Windows.Forms.TextBox MainLiczbaSekwencjiTextBox;
+        private System.Windows.Forms.Label label6;
     }
 }
 
