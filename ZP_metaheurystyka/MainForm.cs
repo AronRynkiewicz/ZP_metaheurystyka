@@ -24,7 +24,7 @@ namespace ZP_metaheurystyka
 
         private void MinForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void GeneratorInstancjiButton_Click(object sender, EventArgs e)

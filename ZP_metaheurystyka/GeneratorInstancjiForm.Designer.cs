@@ -80,7 +80,7 @@ namespace ZP_metaheurystyka
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(537, 61);
+            this.label3.Location = new System.Drawing.Point(626, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 20);
             this.label3.TabIndex = 3;
@@ -90,7 +90,7 @@ namespace ZP_metaheurystyka
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(537, 117);
+            this.label4.Location = new System.Drawing.Point(571, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 20);
             this.label4.TabIndex = 4;
@@ -100,11 +100,11 @@ namespace ZP_metaheurystyka
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(537, 178);
+            this.label5.Location = new System.Drawing.Point(444, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 20);
+            this.label5.Size = new System.Drawing.Size(242, 20);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Liczba mutacji";
+            this.label5.Text = "Liczba mutacji w jednej sekwencji";
             // 
             // LiczbaSekwencjiTextBox
             // 
@@ -170,6 +170,7 @@ namespace ZP_metaheurystyka
             this.SekwencjeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.SekwencjeTextBox.Size = new System.Drawing.Size(787, 343);
             this.SekwencjeTextBox.TabIndex = 0;
+            this.SekwencjeTextBox.WordWrap = false;
             // 
             // GeneratorInstancjiForm
             // 
