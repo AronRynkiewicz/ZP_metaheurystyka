@@ -29,7 +29,9 @@ namespace ZP_metaheurystyka
 
         private void GeneratorInstancjiButton_Click(object sender, EventArgs e)
         {
-            new GeneratorInstancjiForm().Show();
+            GeneratorInstancjiForm GeneratorForm = new GeneratorInstancjiForm();
+
+            GeneratorForm.Show();
         }
 
         private void WlasneDaneButton_Click(object sender, EventArgs e)

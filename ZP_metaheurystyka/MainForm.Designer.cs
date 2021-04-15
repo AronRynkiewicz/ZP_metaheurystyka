@@ -145,9 +145,9 @@ namespace ZP_metaheurystyka
             // SekwencjeGroupBox
             // 
             this.SekwencjeGroupBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.SekwencjeGroupBox.Location = new System.Drawing.Point(558, 51);
+            this.SekwencjeGroupBox.Location = new System.Drawing.Point(558, 32);
             this.SekwencjeGroupBox.Name = "SekwencjeGroupBox";
-            this.SekwencjeGroupBox.Size = new System.Drawing.Size(411, 203);
+            this.SekwencjeGroupBox.Size = new System.Drawing.Size(411, 252);
             this.SekwencjeGroupBox.TabIndex = 5;
             this.SekwencjeGroupBox.TabStop = false;
             this.SekwencjeGroupBox.Text = "Obecne parametry sekwencji";
