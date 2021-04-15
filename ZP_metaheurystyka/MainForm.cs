@@ -16,6 +16,10 @@ namespace ZP_metaheurystyka
         public MainForm()
         {
             InitializeComponent();
+            this.MainIteracjeTextBox.Text = Parametry.LiczbaIteracji.ToString();
+            this.MainPopulacjaTextBox.Text = Parametry.WielkoscPopulacji.ToString();
+            this.MainMutacjeTextBox.Text = Parametry.CzestotliwoscMutacji.ToString();
+            this.MainKrzyzowanieTextBox.Text = Parametry.ProcentKrzyzowania.ToString();
         }
 
         private void MinForm_Load(object sender, EventArgs e)
@@ -35,8 +39,17 @@ namespace ZP_metaheurystyka
 
         private void ParamatryHeurystykiButton_Click(object sender, EventArgs e)
         {
-            new ParametryMetaheurystykiForm(Parametry).Show();
-            int i = 0;
+            ParametryMetaheurystykiForm ParametryForm = new ParametryMetaheurystykiForm(Parametry);
+            ParametryForm.FormClosed += new FormClosedEventHandler(ParametryForm_FormClosed);
+            ParametryForm.Show();
+        }
+
+        void ParametryForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.MainIteracjeTextBox.Text = Parametry.LiczbaIteracji.ToString();
+            this.MainPopulacjaTextBox.Text = Parametry.WielkoscPopulacji.ToString();
+            this.MainMutacjeTextBox.Text = Parametry.CzestotliwoscMutacji.ToString();
+            this.MainKrzyzowanieTextBox.Text = Parametry.ProcentKrzyzowania.ToString();
         }
     }
 }

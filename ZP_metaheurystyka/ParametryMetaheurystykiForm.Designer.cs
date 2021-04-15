@@ -38,12 +38,15 @@ namespace ZP_metaheurystyka
             this.WielkoscPopulacjiTextBox = new System.Windows.Forms.TextBox();
             this.ProcentKrzyzowaniaTextBox = new System.Windows.Forms.TextBox();
             this.CzestotliwoscMutacjiTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ZapiszParametryButton
             // 
             this.ZapiszParametryButton.BackColor = System.Drawing.SystemColors.Window;
-            this.ZapiszParametryButton.Enabled = false;
             this.ZapiszParametryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ZapiszParametryButton.Location = new System.Drawing.Point(338, 385);
             this.ZapiszParametryButton.Name = "ZapiszParametryButton";
@@ -51,6 +54,7 @@ namespace ZP_metaheurystyka
             this.ZapiszParametryButton.TabIndex = 0;
             this.ZapiszParametryButton.Text = "Zapisz";
             this.ZapiszParametryButton.UseVisualStyleBackColor = false;
+            this.ZapiszParametryButton.Click += new System.EventHandler(this.ZapiszParametryButton_Click);
             // 
             // label1
             // 
@@ -120,12 +124,56 @@ namespace ZP_metaheurystyka
             this.CzestotliwoscMutacjiTextBox.Size = new System.Drawing.Size(211, 26);
             this.CzestotliwoscMutacjiTextBox.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(572, 235);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(137, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "[na przykład: 0,01]";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Window;
+            this.label6.Location = new System.Drawing.Point(572, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(124, 20);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "[na przykład: 20]";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Window;
+            this.label7.Location = new System.Drawing.Point(572, 120);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(133, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "[na przykład: 100]";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.Window;
+            this.label8.Location = new System.Drawing.Point(572, 62);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(142, 20);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "[na przykład: 1000]";
+            // 
             // ParametryMetaheurystykiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.CzestotliwoscMutacjiTextBox);
             this.Controls.Add(this.ProcentKrzyzowaniaTextBox);
             this.Controls.Add(this.WielkoscPopulacjiTextBox);
@@ -156,5 +204,9 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.TextBox WielkoscPopulacjiTextBox;
         private System.Windows.Forms.TextBox ProcentKrzyzowaniaTextBox;
         private System.Windows.Forms.TextBox CzestotliwoscMutacjiTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
