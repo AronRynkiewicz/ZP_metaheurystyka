@@ -44,9 +44,9 @@ namespace ZP_metaheurystyka
             {
                 TMPLiczbaSekwencji = Int32.Parse(this.LiczbaSekwencjiTextBox.Text);
                 
-                if(TMPLiczbaSekwencji <= 0)
+                if(TMPLiczbaSekwencji <= 3)
                 {
-                    Ostrzezenia.Add("Liczba sekwencji nie moze byc mniejsza od 1!");
+                    Ostrzezenia.Add("Liczba sekwencji nie moze byc mniejsza od 3!");
                     PoprawneDane = false;
                 }
             }
