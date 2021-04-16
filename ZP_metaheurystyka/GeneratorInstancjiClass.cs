@@ -138,15 +138,17 @@ namespace ZP_metaheurystyka
                     
                     if(tmp_sekwencja[pos] == bledna_zasada)
                     {
-                        tmp_sekwencja.Add('_');
+                        if (pos < tmp_sekwencja.Count())
+                        {
+                            tmp_sekwencja.Insert(pos + 1, '_');
+                        }
+                        else
+                        {
+                            tmp_sekwencja.Add('_');
+                        }
                     }
 
-                    if(tmp_sekwencja[pos] == '_')
-                    {
-                        tmp_sekwencja.Add('_');
-                    }
-
-                    if (tmp_sekwencja[pos] != bledna_zasada && tmp_sekwencja[pos] != '_')
+                    if (tmp_sekwencja[pos] != bledna_zasada)
                     {
                         tmp_sekwencja.Insert(pos, '_');
                     }
