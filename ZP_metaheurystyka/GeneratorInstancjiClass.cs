@@ -78,12 +78,52 @@ namespace ZP_metaheurystyka
             }
         }
         
+        public void WprowadzMutacje()
+        {
+            List<int> pozycje_mutacji = new List<int>();
+            var losowa_nowa_zasada = new Random();
+            var losowy_index = new Random();
+
+            while (pozycje_mutacji.Count() != this.LiczbaMutacji * this.LiczbaSekwencji)
+            {
+                for(int i = 0; i < this.Sekwencje.Count(); i++)
+                {
+                    int index = 0;
+                    while (true)
+                    {
+                        index = losowy_index.Next(this.Sekwencje[i].Count());
+                        if (!pozycje_mutacji.Contains(index))
+                        {
+                            break;
+                        }
+                    }
+
+                    List<char> tmp_sekwencja = new List<char>(this.Sekwencje[i]);
+                    tmp_sekwencja[index] = this.Alfabet[losowa_nowa_zasada.Next(this.Alfabet.Count)];
+                    this.Sekwencje[i] = new string(tmp_sekwencja.ToArray());
+                    pozycje_mutacji.Add(index);
+                }
+            }
+        }
+
+        public void PoprawBledy()
+        {
+            for(int pos = 0; pos < this.Sekwencje[0].Count(); pos++)
+            {
+                for (int index_sekwencji = 0; index_sekwencji < this.Sekwencje.Count(); index_sekwencji++)
+                {
+                    
+                }
+            }
+        }
 
         public void WygenerujInstancje()
         {
             var macierz = WygenerujMacierz();
             var losowa_sekwencja = WygenerujSekwencje();
             WygenerujDopasowanie(macierz, losowa_sekwencja);
+            WprowadzMutacje();
+            PoprawBledy();
         }
     }
 }

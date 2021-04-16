@@ -28,12 +28,14 @@ namespace ZP_metaheurystyka
         public bool SprawdzParametry()
         {
             List<string> BledyFormatu = new List<string>();
+            List<string> Ostrzezenia = new List<string>();
+
             bool PoprawneDane = true;
             char[] array = new[] { 'A', 'C', 'G', 'T'};
             HashSet<char> ZbiorZasad = new HashSet<char>(array);
 
-            int TMPLiczbaSekwencji;
-            int TMPDlugoscSekwencji;
+            int TMPLiczbaSekwencji = 0;
+            int TMPDlugoscSekwencji = 0;
             HashSet<char> TMPAlfabet;
             int TMPProcentPrzerw;
             int TMPLiczbaMutacji;
@@ -41,6 +43,12 @@ namespace ZP_metaheurystyka
             try
             {
                 TMPLiczbaSekwencji = Int32.Parse(this.LiczbaSekwencjiTextBox.Text);
+                
+                if(TMPLiczbaSekwencji <= 0)
+                {
+                    Ostrzezenia.Add("Liczba sekwencji nie moze byc mniejsza od 1!");
+                    PoprawneDane = false;
+                }
             }
             catch
             {
@@ -51,6 +59,12 @@ namespace ZP_metaheurystyka
             try
             {
                 TMPDlugoscSekwencji = Int32.Parse(this.DlugoscSekwencjiTextBox.Text);
+
+                if (TMPDlugoscSekwencji <= 0)
+                {
+                    Ostrzezenia.Add("Długość sekwencji nie moze byc mniejsza od 1!");
+                    PoprawneDane = false;
+                }
             }
             catch
             {
@@ -72,6 +86,12 @@ namespace ZP_metaheurystyka
             try
             {
                 TMPProcentPrzerw = Int32.Parse(this.PrzerwyTextBox.Text);
+
+                if (TMPProcentPrzerw < 0)
+                {
+                    Ostrzezenia.Add("Procent przerw nie moze byc mniejszy od 0!");
+                    PoprawneDane = false;
+                }
             }
             catch
             {
@@ -82,6 +102,21 @@ namespace ZP_metaheurystyka
             try
             {
                 TMPLiczbaMutacji = Int32.Parse(this.MutacjeTextBox.Text);
+
+                if (TMPLiczbaMutacji < 0)
+                {
+                    Ostrzezenia.Add("Liczba mutacji nie moze byc mniejsza od 0!");
+                    PoprawneDane = false;
+                }
+
+                if (TMPLiczbaSekwencji != 0)
+                {
+                    if (TMPLiczbaMutacji > (int)(TMPDlugoscSekwencji / TMPLiczbaSekwencji))
+                    {
+                        Ostrzezenia.Add("W danej kolumnie może być zmutowany tylko jeden nukleotyd, maksymalna wartość liczby mutacji na sekwencję dla podanych parametrów: " + ((int)(TMPDlugoscSekwencji / TMPLiczbaSekwencji)).ToString());
+                        PoprawneDane = false;
+                    }
+                }
             }
             catch
             {
@@ -92,6 +127,11 @@ namespace ZP_metaheurystyka
             if (BledyFormatu.Count != 0)
             {
                 System.Windows.Forms.MessageBox.Show("Dane nie zostały zapisane ze względu na błędy w następujących polach: \n -" + String.Join("\n - ", BledyFormatu.ToArray()), "Uwaga - błędy!");
+            }
+
+            if(Ostrzezenia.Count != 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Dane nie zostały zapisane ze względu na ostrzeżenia w następujących polach: \n -" + String.Join("\n - ", Ostrzezenia.ToArray()), "Uwaga!");
             }
 
 
