@@ -110,10 +110,50 @@ namespace ZP_metaheurystyka
         {
             for(int pos = 0; pos < this.Sekwencje[0].Count(); pos++)
             {
+                Dictionary<char, int> wystapienia_zasad = new Dictionary<char, int>();
+
                 for (int index_sekwencji = 0; index_sekwencji < this.Sekwencje.Count(); index_sekwencji++)
                 {
-                    
+                    try
+                    {
+                        wystapienia_zasad[Sekwencje[index_sekwencji][pos]] += 1;
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        wystapienia_zasad.Add(Sekwencje[index_sekwencji][pos], 1);
+                    }
                 }
+
+                wystapienia_zasad.Remove('_');
+                if(wystapienia_zasad.Count <= 1)
+                {
+                    continue;
+                }
+
+                char bledna_zasada = wystapienia_zasad.OrderBy(kvp => kvp.Value).First().Key;
+
+                for (int index_sekwencji = 0; index_sekwencji < this.Sekwencje.Count(); index_sekwencji++)
+                {
+                    List<char> tmp_sekwencja = new List<char>(this.Sekwencje[index_sekwencji]);
+                    
+                    if(tmp_sekwencja[pos] == bledna_zasada)
+                    {
+                        tmp_sekwencja.Add('_');
+                    }
+
+                    if(tmp_sekwencja[pos] == '_')
+                    {
+                        tmp_sekwencja.Add('_');
+                    }
+
+                    if (tmp_sekwencja[pos] != bledna_zasada && tmp_sekwencja[pos] != '_')
+                    {
+                        tmp_sekwencja.Insert(pos, '_');
+                    }
+                    this.Sekwencje[index_sekwencji] = new string(tmp_sekwencja.ToArray());
+                }
+
+                wystapienia_zasad.Clear();
             }
         }
 

@@ -155,6 +155,7 @@ namespace ZP_metaheurystyka
             // 
             // SekwencjeTextBox
             // 
+            this.SekwencjeTextBox.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SekwencjeTextBox.Location = new System.Drawing.Point(25, 40);
             this.SekwencjeTextBox.Multiline = true;
             this.SekwencjeTextBox.Name = "SekwencjeTextBox";
