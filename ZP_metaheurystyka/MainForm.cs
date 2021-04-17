@@ -14,7 +14,7 @@ namespace ZP_metaheurystyka
     {
         public ParametryMetaheurystykiClass Parametry = new ParametryMetaheurystykiClass(0, 0, 0, 0);
 
-        public GeneratorInstancjiClass Generator = new GeneratorInstancjiClass(0, 0, "ACGT", 0, 0);
+        public GeneratorInstancjiClass Generator = new GeneratorInstancjiClass(0, 0, "ACGT", 0, 0, 0);
 
         public void OdswiezParametryMeta()
         {
@@ -31,6 +31,7 @@ namespace ZP_metaheurystyka
             this.MainAlfabetTextBox.Text = new string(Generator.Alfabet.ToArray());
             this.MainPrzerwyTextBox.Text = Generator.ProcentPrzerw.ToString();
             this.MainMutacjeNaSekwencjeTextBox.Text = Generator.LiczbaMutacji.ToString();
+            this.MainJakoscDopasowaniaTextBox.Text = Generator.JakoscDopasowania.ToString();
         }
 
         public MainForm()

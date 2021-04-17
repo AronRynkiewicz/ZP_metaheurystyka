@@ -34,25 +34,27 @@ namespace ZP_metaheurystyka
             this.UruchomMetaheurystykeButton = new System.Windows.Forms.Button();
             this.ParamatryHeurystykiBuuton = new System.Windows.Forms.Button();
             this.ParametryGroupBox = new System.Windows.Forms.GroupBox();
+            this.MainMutacjeTextBox = new System.Windows.Forms.TextBox();
+            this.MainKrzyzowanieTextBox = new System.Windows.Forms.TextBox();
+            this.MainPopulacjaTextBox = new System.Windows.Forms.TextBox();
+            this.MainIteracjeTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SekwencjeGroupBox = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.MainIteracjeTextBox = new System.Windows.Forms.TextBox();
-            this.MainPopulacjaTextBox = new System.Windows.Forms.TextBox();
-            this.MainKrzyzowanieTextBox = new System.Windows.Forms.TextBox();
-            this.MainMutacjeTextBox = new System.Windows.Forms.TextBox();
-            this.MainLiczbaSekwencjiTextBox = new System.Windows.Forms.TextBox();
-            this.MainDlugoscSekwencjiTextBox = new System.Windows.Forms.TextBox();
-            this.MainAlfabetTextBox = new System.Windows.Forms.TextBox();
-            this.MainPrzerwyTextBox = new System.Windows.Forms.TextBox();
-            this.MainMutacjeNaSekwencjeTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.MainMutacjeNaSekwencjeTextBox = new System.Windows.Forms.TextBox();
+            this.MainPrzerwyTextBox = new System.Windows.Forms.TextBox();
+            this.MainAlfabetTextBox = new System.Windows.Forms.TextBox();
+            this.MainDlugoscSekwencjiTextBox = new System.Windows.Forms.TextBox();
+            this.MainLiczbaSekwencjiTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.MainJakoscDopasowaniaTextBox = new System.Windows.Forms.TextBox();
             this.ParametryGroupBox.SuspendLayout();
             this.SekwencjeGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +63,7 @@ namespace ZP_metaheurystyka
             // 
             this.GeneratorInstancjiButton.BackColor = System.Drawing.SystemColors.Window;
             this.GeneratorInstancjiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GeneratorInstancjiButton.Location = new System.Drawing.Point(76, 51);
+            this.GeneratorInstancjiButton.Location = new System.Drawing.Point(76, 81);
             this.GeneratorInstancjiButton.Name = "GeneratorInstancjiButton";
             this.GeneratorInstancjiButton.Size = new System.Drawing.Size(250, 85);
             this.GeneratorInstancjiButton.TabIndex = 0;
@@ -73,7 +75,7 @@ namespace ZP_metaheurystyka
             // 
             this.WlasneDaneButton.BackColor = System.Drawing.SystemColors.Window;
             this.WlasneDaneButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WlasneDaneButton.Location = new System.Drawing.Point(76, 199);
+            this.WlasneDaneButton.Location = new System.Drawing.Point(76, 252);
             this.WlasneDaneButton.Name = "WlasneDaneButton";
             this.WlasneDaneButton.Size = new System.Drawing.Size(250, 85);
             this.WlasneDaneButton.TabIndex = 1;
@@ -86,7 +88,7 @@ namespace ZP_metaheurystyka
             this.UruchomMetaheurystykeButton.BackColor = System.Drawing.SystemColors.Window;
             this.UruchomMetaheurystykeButton.Enabled = false;
             this.UruchomMetaheurystykeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UruchomMetaheurystykeButton.Location = new System.Drawing.Point(610, 542);
+            this.UruchomMetaheurystykeButton.Location = new System.Drawing.Point(633, 613);
             this.UruchomMetaheurystykeButton.Name = "UruchomMetaheurystykeButton";
             this.UruchomMetaheurystykeButton.Size = new System.Drawing.Size(250, 85);
             this.UruchomMetaheurystykeButton.TabIndex = 2;
@@ -97,7 +99,7 @@ namespace ZP_metaheurystyka
             // 
             this.ParamatryHeurystykiBuuton.BackColor = System.Drawing.SystemColors.Window;
             this.ParamatryHeurystykiBuuton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ParamatryHeurystykiBuuton.Location = new System.Drawing.Point(76, 343);
+            this.ParamatryHeurystykiBuuton.Location = new System.Drawing.Point(76, 431);
             this.ParamatryHeurystykiBuuton.Name = "ParamatryHeurystykiBuuton";
             this.ParamatryHeurystykiBuuton.Size = new System.Drawing.Size(250, 85);
             this.ParamatryHeurystykiBuuton.TabIndex = 3;
@@ -116,12 +118,54 @@ namespace ZP_metaheurystyka
             this.ParametryGroupBox.Controls.Add(this.label2);
             this.ParametryGroupBox.Controls.Add(this.label1);
             this.ParametryGroupBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.ParametryGroupBox.Location = new System.Drawing.Point(558, 303);
+            this.ParametryGroupBox.Location = new System.Drawing.Point(558, 352);
             this.ParametryGroupBox.Name = "ParametryGroupBox";
             this.ParametryGroupBox.Size = new System.Drawing.Size(411, 203);
             this.ParametryGroupBox.TabIndex = 4;
             this.ParametryGroupBox.TabStop = false;
             this.ParametryGroupBox.Text = "Obecne parametry metaheurystyki";
+            // 
+            // MainMutacjeTextBox
+            // 
+            this.MainMutacjeTextBox.Enabled = false;
+            this.MainMutacjeTextBox.Location = new System.Drawing.Point(281, 146);
+            this.MainMutacjeTextBox.Name = "MainMutacjeTextBox";
+            this.MainMutacjeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainMutacjeTextBox.TabIndex = 13;
+            // 
+            // MainKrzyzowanieTextBox
+            // 
+            this.MainKrzyzowanieTextBox.Enabled = false;
+            this.MainKrzyzowanieTextBox.Location = new System.Drawing.Point(281, 111);
+            this.MainKrzyzowanieTextBox.Name = "MainKrzyzowanieTextBox";
+            this.MainKrzyzowanieTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainKrzyzowanieTextBox.TabIndex = 12;
+            // 
+            // MainPopulacjaTextBox
+            // 
+            this.MainPopulacjaTextBox.Enabled = false;
+            this.MainPopulacjaTextBox.Location = new System.Drawing.Point(281, 79);
+            this.MainPopulacjaTextBox.Name = "MainPopulacjaTextBox";
+            this.MainPopulacjaTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainPopulacjaTextBox.TabIndex = 11;
+            // 
+            // MainIteracjeTextBox
+            // 
+            this.MainIteracjeTextBox.Enabled = false;
+            this.MainIteracjeTextBox.Location = new System.Drawing.Point(281, 40);
+            this.MainIteracjeTextBox.Name = "MainIteracjeTextBox";
+            this.MainIteracjeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainIteracjeTextBox.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.Window;
+            this.label4.Location = new System.Drawing.Point(15, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Częstotliwość mutacji";
             // 
             // label3
             // 
@@ -155,6 +199,8 @@ namespace ZP_metaheurystyka
             // 
             // SekwencjeGroupBox
             // 
+            this.SekwencjeGroupBox.Controls.Add(this.MainJakoscDopasowaniaTextBox);
+            this.SekwencjeGroupBox.Controls.Add(this.label10);
             this.SekwencjeGroupBox.Controls.Add(this.label6);
             this.SekwencjeGroupBox.Controls.Add(this.label9);
             this.SekwencjeGroupBox.Controls.Add(this.label8);
@@ -168,132 +214,10 @@ namespace ZP_metaheurystyka
             this.SekwencjeGroupBox.ForeColor = System.Drawing.SystemColors.Window;
             this.SekwencjeGroupBox.Location = new System.Drawing.Point(558, 32);
             this.SekwencjeGroupBox.Name = "SekwencjeGroupBox";
-            this.SekwencjeGroupBox.Size = new System.Drawing.Size(411, 252);
+            this.SekwencjeGroupBox.Size = new System.Drawing.Size(411, 300);
             this.SekwencjeGroupBox.TabIndex = 5;
             this.SekwencjeGroupBox.TabStop = false;
             this.SekwencjeGroupBox.Text = "Obecne parametry sekwencji";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(15, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(160, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Częstotliwość mutacji";
-            // 
-            // MainIteracjeTextBox
-            // 
-            this.MainIteracjeTextBox.Enabled = false;
-            this.MainIteracjeTextBox.Location = new System.Drawing.Point(281, 40);
-            this.MainIteracjeTextBox.Name = "MainIteracjeTextBox";
-            this.MainIteracjeTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainIteracjeTextBox.TabIndex = 10;
-            // 
-            // MainPopulacjaTextBox
-            // 
-            this.MainPopulacjaTextBox.Enabled = false;
-            this.MainPopulacjaTextBox.Location = new System.Drawing.Point(281, 79);
-            this.MainPopulacjaTextBox.Name = "MainPopulacjaTextBox";
-            this.MainPopulacjaTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainPopulacjaTextBox.TabIndex = 11;
-            // 
-            // MainKrzyzowanieTextBox
-            // 
-            this.MainKrzyzowanieTextBox.Enabled = false;
-            this.MainKrzyzowanieTextBox.Location = new System.Drawing.Point(281, 111);
-            this.MainKrzyzowanieTextBox.Name = "MainKrzyzowanieTextBox";
-            this.MainKrzyzowanieTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainKrzyzowanieTextBox.TabIndex = 12;
-            // 
-            // MainMutacjeTextBox
-            // 
-            this.MainMutacjeTextBox.Enabled = false;
-            this.MainMutacjeTextBox.Location = new System.Drawing.Point(281, 146);
-            this.MainMutacjeTextBox.Name = "MainMutacjeTextBox";
-            this.MainMutacjeTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainMutacjeTextBox.TabIndex = 13;
-            // 
-            // MainLiczbaSekwencjiTextBox
-            // 
-            this.MainLiczbaSekwencjiTextBox.Enabled = false;
-            this.MainLiczbaSekwencjiTextBox.Location = new System.Drawing.Point(281, 36);
-            this.MainLiczbaSekwencjiTextBox.Name = "MainLiczbaSekwencjiTextBox";
-            this.MainLiczbaSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainLiczbaSekwencjiTextBox.TabIndex = 14;
-            // 
-            // MainDlugoscSekwencjiTextBox
-            // 
-            this.MainDlugoscSekwencjiTextBox.Enabled = false;
-            this.MainDlugoscSekwencjiTextBox.Location = new System.Drawing.Point(281, 78);
-            this.MainDlugoscSekwencjiTextBox.Name = "MainDlugoscSekwencjiTextBox";
-            this.MainDlugoscSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainDlugoscSekwencjiTextBox.TabIndex = 15;
-            // 
-            // MainAlfabetTextBox
-            // 
-            this.MainAlfabetTextBox.Enabled = false;
-            this.MainAlfabetTextBox.Location = new System.Drawing.Point(281, 123);
-            this.MainAlfabetTextBox.Name = "MainAlfabetTextBox";
-            this.MainAlfabetTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainAlfabetTextBox.TabIndex = 16;
-            // 
-            // MainPrzerwyTextBox
-            // 
-            this.MainPrzerwyTextBox.Enabled = false;
-            this.MainPrzerwyTextBox.Location = new System.Drawing.Point(281, 167);
-            this.MainPrzerwyTextBox.Name = "MainPrzerwyTextBox";
-            this.MainPrzerwyTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainPrzerwyTextBox.TabIndex = 17;
-            // 
-            // MainMutacjeNaSekwencjeTextBox
-            // 
-            this.MainMutacjeNaSekwencjeTextBox.Enabled = false;
-            this.MainMutacjeNaSekwencjeTextBox.Location = new System.Drawing.Point(281, 209);
-            this.MainMutacjeNaSekwencjeTextBox.Name = "MainMutacjeNaSekwencjeTextBox";
-            this.MainMutacjeNaSekwencjeTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainMutacjeNaSekwencjeTextBox.TabIndex = 18;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(15, 39);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 20);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Liczba sekwencji";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.Window;
-            this.label7.Location = new System.Drawing.Point(15, 129);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 20);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Alfabet";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.Window;
-            this.label8.Location = new System.Drawing.Point(15, 173);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 20);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Procent przerw";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.Window;
-            this.label9.Location = new System.Drawing.Point(15, 215);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(242, 20);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "Liczba mutacji w jednej sekwencji";
             // 
             // label6
             // 
@@ -305,12 +229,110 @@ namespace ZP_metaheurystyka
             this.label6.TabIndex = 23;
             this.label6.Text = "Długość sekwencji";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.Window;
+            this.label9.Location = new System.Drawing.Point(15, 215);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(242, 20);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Liczba mutacji w jednej sekwencji";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.Window;
+            this.label8.Location = new System.Drawing.Point(15, 173);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 20);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Procent przerw";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Window;
+            this.label7.Location = new System.Drawing.Point(15, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Alfabet";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(15, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 20);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Liczba sekwencji";
+            // 
+            // MainMutacjeNaSekwencjeTextBox
+            // 
+            this.MainMutacjeNaSekwencjeTextBox.Enabled = false;
+            this.MainMutacjeNaSekwencjeTextBox.Location = new System.Drawing.Point(281, 209);
+            this.MainMutacjeNaSekwencjeTextBox.Name = "MainMutacjeNaSekwencjeTextBox";
+            this.MainMutacjeNaSekwencjeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainMutacjeNaSekwencjeTextBox.TabIndex = 18;
+            // 
+            // MainPrzerwyTextBox
+            // 
+            this.MainPrzerwyTextBox.Enabled = false;
+            this.MainPrzerwyTextBox.Location = new System.Drawing.Point(281, 167);
+            this.MainPrzerwyTextBox.Name = "MainPrzerwyTextBox";
+            this.MainPrzerwyTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainPrzerwyTextBox.TabIndex = 17;
+            // 
+            // MainAlfabetTextBox
+            // 
+            this.MainAlfabetTextBox.Enabled = false;
+            this.MainAlfabetTextBox.Location = new System.Drawing.Point(281, 123);
+            this.MainAlfabetTextBox.Name = "MainAlfabetTextBox";
+            this.MainAlfabetTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainAlfabetTextBox.TabIndex = 16;
+            // 
+            // MainDlugoscSekwencjiTextBox
+            // 
+            this.MainDlugoscSekwencjiTextBox.Enabled = false;
+            this.MainDlugoscSekwencjiTextBox.Location = new System.Drawing.Point(281, 78);
+            this.MainDlugoscSekwencjiTextBox.Name = "MainDlugoscSekwencjiTextBox";
+            this.MainDlugoscSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainDlugoscSekwencjiTextBox.TabIndex = 15;
+            // 
+            // MainLiczbaSekwencjiTextBox
+            // 
+            this.MainLiczbaSekwencjiTextBox.Enabled = false;
+            this.MainLiczbaSekwencjiTextBox.Location = new System.Drawing.Point(281, 36);
+            this.MainLiczbaSekwencjiTextBox.Name = "MainLiczbaSekwencjiTextBox";
+            this.MainLiczbaSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainLiczbaSekwencjiTextBox.TabIndex = 14;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.Window;
+            this.label10.Location = new System.Drawing.Point(15, 255);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(157, 20);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Jakość dopasowania";
+            // 
+            // MainJakoscDopasowaniaTextBox
+            // 
+            this.MainJakoscDopasowaniaTextBox.Enabled = false;
+            this.MainJakoscDopasowaniaTextBox.Location = new System.Drawing.Point(281, 249);
+            this.MainJakoscDopasowaniaTextBox.Name = "MainJakoscDopasowaniaTextBox";
+            this.MainJakoscDopasowaniaTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainJakoscDopasowaniaTextBox.TabIndex = 25;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(1058, 664);
+            this.ClientSize = new System.Drawing.Size(1058, 744);
             this.Controls.Add(this.SekwencjeGroupBox);
             this.Controls.Add(this.ParametryGroupBox);
             this.Controls.Add(this.ParamatryHeurystykiBuuton);
@@ -358,6 +380,8 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.TextBox MainDlugoscSekwencjiTextBox;
         private System.Windows.Forms.TextBox MainLiczbaSekwencjiTextBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox MainJakoscDopasowaniaTextBox;
     }
 }
 

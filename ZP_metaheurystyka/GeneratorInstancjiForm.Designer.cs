@@ -43,6 +43,9 @@ namespace ZP_metaheurystyka
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SekwencjeTextBox = new System.Windows.Forms.TextBox();
             this.ZapiszButton = new System.Windows.Forms.Button();
+            this.OdswiezButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.JakoscTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,7 +169,7 @@ namespace ZP_metaheurystyka
             // 
             // ZapiszButton
             // 
-            this.ZapiszButton.Location = new System.Drawing.Point(382, 763);
+            this.ZapiszButton.Location = new System.Drawing.Point(708, 770);
             this.ZapiszButton.Name = "ZapiszButton";
             this.ZapiszButton.Size = new System.Drawing.Size(192, 51);
             this.ZapiszButton.TabIndex = 12;
@@ -174,12 +177,43 @@ namespace ZP_metaheurystyka
             this.ZapiszButton.UseVisualStyleBackColor = true;
             this.ZapiszButton.Click += new System.EventHandler(this.ZapiszButton_Click);
             // 
+            // OdswiezButton
+            // 
+            this.OdswiezButton.Location = new System.Drawing.Point(494, 770);
+            this.OdswiezButton.Name = "OdswiezButton";
+            this.OdswiezButton.Size = new System.Drawing.Size(192, 51);
+            this.OdswiezButton.TabIndex = 13;
+            this.OdswiezButton.Text = "Odśwież";
+            this.OdswiezButton.UseVisualStyleBackColor = true;
+            this.OdswiezButton.Click += new System.EventHandler(this.OdswiezButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Window;
+            this.label6.Location = new System.Drawing.Point(64, 781);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(216, 20);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Obecna jakość dopasowania:";
+            // 
+            // JakoscTextBox
+            // 
+            this.JakoscTextBox.Enabled = false;
+            this.JakoscTextBox.Location = new System.Drawing.Point(288, 775);
+            this.JakoscTextBox.Name = "JakoscTextBox";
+            this.JakoscTextBox.Size = new System.Drawing.Size(139, 26);
+            this.JakoscTextBox.TabIndex = 15;
+            // 
             // GeneratorInstancjiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(978, 844);
+            this.Controls.Add(this.JakoscTextBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.OdswiezButton);
             this.Controls.Add(this.ZapiszButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MutacjeTextBox);
@@ -220,5 +254,8 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox SekwencjeTextBox;
         private System.Windows.Forms.Button ZapiszButton;
+        private System.Windows.Forms.Button OdswiezButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox JakoscTextBox;
     }
 }

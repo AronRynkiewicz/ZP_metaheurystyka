@@ -14,8 +14,10 @@ namespace ZP_metaheurystyka
         public int ProcentPrzerw { get; set; }
         public int LiczbaMutacji { get; set; }
         public List<string> Sekwencje { get; set; }
+        public int JakoscDopasowania { get; set; }
+        public List<string> TMPSekwencje { get; set; }
 
-        public GeneratorInstancjiClass(int liczba_sewkencji, int dlugosc_sekwencji, string alfabet, int procent_przerw, int liczba_mutacji)
+        public GeneratorInstancjiClass(int liczba_sewkencji, int dlugosc_sekwencji, string alfabet, int procent_przerw, int liczba_mutacji, int jakosc_dopasowania)
         {
             this.LiczbaSekwencji = liczba_sewkencji;
             this.DlugoscSekwencji = dlugosc_sekwencji;
@@ -23,6 +25,8 @@ namespace ZP_metaheurystyka
             this.Alfabet.AddRange(alfabet);
             this.ProcentPrzerw = procent_przerw;
             this.LiczbaMutacji = liczba_mutacji;
+            this.JakoscDopasowania = jakosc_dopasowania;
+            this.TMPSekwencje = new List<string>();
         }
 
         public List<List<int>> WygenerujMacierz()
@@ -157,6 +161,89 @@ namespace ZP_metaheurystyka
 
                 wystapienia_zasad.Clear();
             }
+
+            this.JakoscDopasowania = ObliczJakoscDopasowania();
+        }
+
+        public int ObliczJakoscDopasowania()
+        {
+            int obecna_jakosc = 0;
+
+            for(int i = 0; i < this.Sekwencje.Count(); i++)
+            {
+                obecna_jakosc += Sekwencje[i].Count(f => f == '_');
+            }
+
+            return obecna_jakosc;
+        }
+
+        public bool sprawdzDlugoscSekwencji()
+        {
+            HashSet<int> dlugosci_sekwencji = new HashSet<int>();
+            bool poprawna_dlugosc = true;
+
+            for (int i = 0; i < this.TMPSekwencje.Count; i++)
+            {
+                dlugosci_sekwencji.Add(TMPSekwencje[i].Count());
+            }
+
+            if(dlugosci_sekwencji.Count() != 1)
+            {
+                poprawna_dlugosc = false;
+            }
+
+            return poprawna_dlugosc;
+        }
+
+        public bool sprawdzZasadySekwencji()
+        {
+            bool poprawne_zasady = true;
+            HashSet<char> zasady_sekwencji = new HashSet<char>();
+            HashSet<char>  alfabet = new HashSet<char>(this.Alfabet);
+            int poczatkowy_rozmiar_alfabetu = alfabet.Count();
+
+            for (int i = 0; i < this.TMPSekwencje.Count; i++)
+            {
+                zasady_sekwencji = new HashSet<char>(this.TMPSekwencje[i]);
+                if (zasady_sekwencji.Contains('_'))
+                {
+                    zasady_sekwencji.Remove('_');
+                }
+
+                alfabet.UnionWith(zasady_sekwencji);
+                if(alfabet.Count() > poczatkowy_rozmiar_alfabetu)
+                {
+                    poprawne_zasady = false;
+                    break;
+                }
+            }
+
+            return poprawne_zasady;
+        }
+
+        public bool SprawdzPoprawnoscInstancji()
+        {
+            List<string> BledyFormatu = new List<string>();
+            bool poprawnosc_danych = true;
+
+            if (!sprawdzDlugoscSekwencji())
+            {
+                poprawnosc_danych = false;
+                BledyFormatu.Add("Sekwencje nie są równej długości");
+            }
+
+            if (!sprawdzZasadySekwencji())
+            {
+                poprawnosc_danych = false;
+                BledyFormatu.Add("W sekwencjach znajduje się inny znak niż w dozwolonym alfabecie");
+            }
+
+            if (!poprawnosc_danych)
+            {
+                System.Windows.Forms.MessageBox.Show("Dane nie zostały zapisane ze względu na następujące błędy: \n -" + String.Join("\n - ", BledyFormatu.ToArray()), "Uwaga - błędy!");
+            }
+
+            return poprawnosc_danych;
         }
 
         public void WygenerujInstancje()

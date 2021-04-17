@@ -12,7 +12,7 @@ namespace ZP_metaheurystyka
 {
     public partial class GeneratorInstancjiForm : Form
     {
-        public GeneratorInstancjiClass generator = new GeneratorInstancjiClass(0, 0, "ACGT", 0, 0);
+        public GeneratorInstancjiClass generator = new GeneratorInstancjiClass(0, 0, "ACGT", 0, 0, 0);
         public GeneratorInstancjiForm(GeneratorInstancjiClass Generator)
         {
             InitializeComponent();
@@ -23,6 +23,7 @@ namespace ZP_metaheurystyka
             this.AlfabetTextBox.Text = new string(Generator.Alfabet.ToArray());
             this.PrzerwyTextBox.Text = Generator.ProcentPrzerw.ToString();
             this.MutacjeTextBox.Text = Generator.LiczbaMutacji.ToString();
+            this.JakoscTextBox.Text = Generator.JakoscDopasowania.ToString();
         }
 
         public bool SprawdzParametry()
@@ -138,6 +139,15 @@ namespace ZP_metaheurystyka
             return PoprawneDane;
         }
 
+        private void WyswietlSekwencje()
+        {
+            this.SekwencjeTextBox.Text = "";
+            for (int i = 0; i < generator.Sekwencje.Count(); i++)
+            {
+                this.SekwencjeTextBox.Text += generator.Sekwencje[i] + System.Environment.NewLine;
+            }
+        }
+
         private void WygenerujInstancjeButton_Click(object sender, EventArgs e)
         {
             var PoprawneDane = SprawdzParametry();
@@ -147,23 +157,58 @@ namespace ZP_metaheurystyka
                 generator.LiczbaSekwencji = Int32.Parse(this.LiczbaSekwencjiTextBox.Text);
                 generator.DlugoscSekwencji = Int32.Parse(this.DlugoscSekwencjiTextBox.Text);
                 generator.Alfabet = new List<char>();
-                generator.Alfabet.AddRange(this.AlfabetTextBox.Text);
+                generator.Alfabet.AddRange(new HashSet<char>(this.AlfabetTextBox.Text));
                 generator.ProcentPrzerw = Int32.Parse(this.PrzerwyTextBox.Text);
                 generator.LiczbaMutacji = Int32.Parse(this.MutacjeTextBox.Text);
 
                 generator.WygenerujInstancje();
-                this.SekwencjeTextBox.Text = "";
-                for (int i = 0; i < generator.Sekwencje.Count(); i++)
+                this.JakoscTextBox.Text = generator.JakoscDopasowania.ToString();
+
+                WyswietlSekwencje();
+            }
+        }
+
+        private void NadpiszSekwencje()
+        {
+            generator.TMPSekwencje.Clear();
+
+            for(int i = 0; i < this.SekwencjeTextBox.Lines.Length; i++)
+            {
+                if (SekwencjeTextBox.Lines[i].Count() > 0)
                 {
-                    this.SekwencjeTextBox.Text += generator.Sekwencje[i] + System.Environment.NewLine;
+                    generator.TMPSekwencje.Add(String.Concat(SekwencjeTextBox.Lines[i].Where(c => !Char.IsWhiteSpace(c))));
                 }
             }
         }
 
         private void ZapiszButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Dane zostały zapisane!");
-            this.Close();
+            NadpiszSekwencje();
+            if (generator.SprawdzPoprawnoscInstancji())
+            {
+                generator.Sekwencje = generator.TMPSekwencje;
+
+                generator.PoprawBledy();
+                WyswietlSekwencje();
+
+                this.JakoscTextBox.Text = generator.JakoscDopasowania.ToString();
+                System.Windows.Forms.MessageBox.Show("Dane zostały zapisane!");
+                this.Close();
+            }
+        }
+
+        private void OdswiezButton_Click(object sender, EventArgs e)
+        {
+            NadpiszSekwencje();
+            if (generator.SprawdzPoprawnoscInstancji())
+            {
+                generator.Sekwencje = generator.TMPSekwencje;
+
+                generator.PoprawBledy();
+
+                WyswietlSekwencje();
+                this.JakoscTextBox.Text = generator.JakoscDopasowania.ToString();
+            }
         }
     }
 }
