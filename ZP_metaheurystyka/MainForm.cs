@@ -62,7 +62,9 @@ namespace ZP_metaheurystyka
 
         private void WlasneDaneButton_Click(object sender, EventArgs e)
         {
-            new WlasneDaneForm().Show();
+            WlasneDaneForm WlasneForm = new WlasneDaneForm(Generator);
+            WlasneForm.FormClosed += new FormClosedEventHandler(GeneratorForm_FormClosed);
+            WlasneForm.Show();
         }
 
         private void ParamatryHeurystykiButton_Click(object sender, EventArgs e)

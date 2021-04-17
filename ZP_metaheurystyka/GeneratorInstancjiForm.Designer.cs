@@ -183,7 +183,7 @@ namespace ZP_metaheurystyka
             this.OdswiezButton.Name = "OdswiezButton";
             this.OdswiezButton.Size = new System.Drawing.Size(192, 51);
             this.OdswiezButton.TabIndex = 13;
-            this.OdswiezButton.Text = "Odśwież";
+            this.OdswiezButton.Text = "Sprawdź";
             this.OdswiezButton.UseVisualStyleBackColor = true;
             this.OdswiezButton.Click += new System.EventHandler(this.OdswiezButton_Click);
             // 

@@ -24,6 +24,10 @@ namespace ZP_metaheurystyka
             this.PrzerwyTextBox.Text = Generator.ProcentPrzerw.ToString();
             this.MutacjeTextBox.Text = Generator.LiczbaMutacji.ToString();
             this.JakoscTextBox.Text = Generator.JakoscDopasowania.ToString();
+            if (generator.Sekwencje != null)
+            {
+                WyswietlSekwencje();
+            }
         }
 
         public bool SprawdzParametry()

@@ -184,7 +184,7 @@ namespace ZP_metaheurystyka
 
             for (int i = 0; i < this.TMPSekwencje.Count; i++)
             {
-                dlugosci_sekwencji.Add(TMPSekwencje[i].Count() - Sekwencje[i].Count(f => f == '_'));
+                dlugosci_sekwencji.Add(TMPSekwencje[i].Count() - TMPSekwencje[i].Count(f => f == '_'));
             }
 
             if(dlugosci_sekwencji.Count() != 1)
