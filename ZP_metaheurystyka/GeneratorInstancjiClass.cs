@@ -96,7 +96,7 @@ namespace ZP_metaheurystyka
                     while (true)
                     {
                         index = losowy_index.Next(this.Sekwencje[i].Count());
-                        if (!pozycje_mutacji.Contains(index))
+                        if (!pozycje_mutacji.Contains(index) && this.Sekwencje[i][index] != '_')
                         {
                             break;
                         }
@@ -184,7 +184,7 @@ namespace ZP_metaheurystyka
 
             for (int i = 0; i < this.TMPSekwencje.Count; i++)
             {
-                dlugosci_sekwencji.Add(TMPSekwencje[i].Count());
+                dlugosci_sekwencji.Add(TMPSekwencje[i].Count() - Sekwencje[i].Count(f => f == '_'));
             }
 
             if(dlugosci_sekwencji.Count() != 1)
