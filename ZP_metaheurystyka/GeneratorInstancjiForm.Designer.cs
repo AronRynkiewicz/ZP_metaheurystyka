@@ -231,6 +231,7 @@ namespace ZP_metaheurystyka
             this.MaximizeBox = false;
             this.Name = "GeneratorInstancjiForm";
             this.Text = "Generator Instancji";
+            this.Load += new System.EventHandler(this.GeneratorInstancjiForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -59,6 +59,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MetaheurystykaClass.cs" />
     <Compile Include="ParametryMetaheurystykiClass.cs" />
     <Compile Include="ParametryMetaheurystykiForm.cs">
       <SubType>Form</SubType>

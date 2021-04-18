@@ -217,5 +217,10 @@ namespace ZP_metaheurystyka
                 this.JakoscTextBox.Text = generator.JakoscDopasowania.ToString();
             }
         }
+
+        private void GeneratorInstancjiForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

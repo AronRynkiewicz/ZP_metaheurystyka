@@ -101,7 +101,7 @@ namespace ZP_metaheurystyka
 
         private void UruchomMetaheurystykeButton_Click(object sender, EventArgs e)
         {
-            UruchomMetaheurystykeForm MetaheurystykaForm = new UruchomMetaheurystykeForm();
+            UruchomMetaheurystykeForm MetaheurystykaForm = new UruchomMetaheurystykeForm(Generator, Parametry);
             MetaheurystykaForm.Show();
         }
 
