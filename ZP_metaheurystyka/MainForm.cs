@@ -63,6 +63,11 @@ namespace ZP_metaheurystyka
             {
                 this.UruchomMetaheurystykeButton.Enabled = true;
             }
+
+            if (Generator.PoprawnaInstancja)
+            {
+                this.ZapiszDoPlikuButton.Enabled = true;
+            }
         }
 
         private void WlasneDaneButton_Click(object sender, EventArgs e)
@@ -92,6 +97,12 @@ namespace ZP_metaheurystyka
         {
             UruchomMetaheurystykeForm MetaheurystykaForm = new UruchomMetaheurystykeForm();
             MetaheurystykaForm.Show();
+        }
+
+        private void ZapiszDoPlikuButton_Click(object sender, EventArgs e)
+        {
+            ZapiszInstancjeDoPlikuForm ZapisForm = new ZapiszInstancjeDoPlikuForm(Generator);
+            ZapisForm.Show();
         }
     }
 }

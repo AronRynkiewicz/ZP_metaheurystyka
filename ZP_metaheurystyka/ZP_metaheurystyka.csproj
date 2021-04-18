@@ -80,6 +80,12 @@
     <Compile Include="WlasneDaneForm.Designer.cs">
       <DependentUpon>WlasneDaneForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZapiszInstancjeDoPlikuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZapiszInstancjeDoPlikuForm.Designer.cs">
+      <DependentUpon>ZapiszInstancjeDoPlikuForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GeneratorInstancjiForm.resx">
       <DependentUpon>GeneratorInstancjiForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WlasneDaneForm.resx">
       <DependentUpon>WlasneDaneForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZapiszInstancjeDoPlikuForm.resx">
+      <DependentUpon>ZapiszInstancjeDoPlikuForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -55,6 +55,7 @@ namespace ZP_metaheurystyka
             this.MainAlfabetTextBox = new System.Windows.Forms.TextBox();
             this.MainDlugoscSekwencjiTextBox = new System.Windows.Forms.TextBox();
             this.MainLiczbaSekwencjiTextBox = new System.Windows.Forms.TextBox();
+            this.ZapiszDoPlikuButton = new System.Windows.Forms.Button();
             this.ParametryGroupBox.SuspendLayout();
             this.SekwencjeGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -328,12 +329,26 @@ namespace ZP_metaheurystyka
             this.MainLiczbaSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
             this.MainLiczbaSekwencjiTextBox.TabIndex = 14;
             // 
+            // ZapiszDoPlikuButton
+            // 
+            this.ZapiszDoPlikuButton.BackColor = System.Drawing.SystemColors.Window;
+            this.ZapiszDoPlikuButton.Enabled = false;
+            this.ZapiszDoPlikuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ZapiszDoPlikuButton.Location = new System.Drawing.Point(76, 593);
+            this.ZapiszDoPlikuButton.Name = "ZapiszDoPlikuButton";
+            this.ZapiszDoPlikuButton.Size = new System.Drawing.Size(250, 85);
+            this.ZapiszDoPlikuButton.TabIndex = 6;
+            this.ZapiszDoPlikuButton.Text = "Zapisz instancję do pliku";
+            this.ZapiszDoPlikuButton.UseVisualStyleBackColor = false;
+            this.ZapiszDoPlikuButton.Click += new System.EventHandler(this.ZapiszDoPlikuButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1058, 744);
+            this.Controls.Add(this.ZapiszDoPlikuButton);
             this.Controls.Add(this.SekwencjeGroupBox);
             this.Controls.Add(this.ParametryGroupBox);
             this.Controls.Add(this.ParamatryHeurystykiBuuton);
@@ -383,6 +398,7 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox MainJakoscDopasowaniaTextBox;
+        private System.Windows.Forms.Button ZapiszDoPlikuButton;
     }
 }
 
