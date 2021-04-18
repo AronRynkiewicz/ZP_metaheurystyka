@@ -191,6 +191,7 @@ namespace ZP_metaheurystyka
             if (generator.SprawdzPoprawnoscInstancji())
             {
                 generator.Sekwencje = generator.TMPSekwencje;
+                generator.SprawdzPusteKolumny();
 
                 generator.PoprawBledy();
                 WyswietlSekwencje();
@@ -207,6 +208,7 @@ namespace ZP_metaheurystyka
             if (generator.SprawdzPoprawnoscInstancji())
             {
                 generator.Sekwencje = generator.TMPSekwencje;
+                generator.SprawdzPusteKolumny();
 
                 generator.PoprawBledy();
 

@@ -245,6 +245,70 @@ namespace ZP_metaheurystyka
 
             return poprawnosc_danych;
         }
+        public void UsunPusteKolumny()
+        {
+            List<string> noweSekwencje = new List<string>();
+
+            for(int i =0; i < this.Sekwencje.Count(); i++)
+            {
+                noweSekwencje.Add(string.Empty);
+            }
+
+            for (int pos = 0; pos < this.Sekwencje[0].Count(); pos++)
+            {
+                int licznik = 0;
+                for (int index = 0; index < this.Sekwencje.Count(); index++)
+                {
+                    if (this.Sekwencje[index][pos] == '_')
+                    {
+                        licznik++;
+                    }
+                }
+
+                if (licznik == this.Sekwencje.Count())
+                {
+                    continue;
+                }
+
+                for (int index = 0; index < this.Sekwencje.Count(); index++)
+                {
+                    noweSekwencje[index] += this.Sekwencje[index][pos];
+                }
+            }
+
+            this.Sekwencje = noweSekwencje;
+        }
+
+        public void SprawdzPusteKolumny()
+        {
+            bool pusteKolumny = false;
+            for(int pos = 0; pos < this.Sekwencje[0].Count(); pos++)
+            {
+                int licznik = 0;
+                for (int index = 0; index < this.Sekwencje.Count(); index++)
+                {
+                    if (this.Sekwencje[index][pos] == '_')
+                    {
+                        licznik++;
+                    }
+                }
+
+                if(licznik == this.Sekwencje.Count())
+                {
+                    pusteKolumny = true;
+                    break;
+                }
+            }
+            
+            if (pusteKolumny)
+            {
+                System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("W dopasowaniu znaleziono kolumny zawierające tylko przerwy, czy chcesz usunąć te kolumny?", "Informacje", System.Windows.Forms.MessageBoxButtons.YesNo);
+                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    UsunPusteKolumny();
+                }
+            }
+        }
 
         public void WygenerujInstancje()
         {
@@ -253,6 +317,7 @@ namespace ZP_metaheurystyka
             WygenerujDopasowanie(macierz, losowa_sekwencja);
             WprowadzMutacje();
             PoprawBledy();
+            SprawdzPusteKolumny();
         }
     }
 }
