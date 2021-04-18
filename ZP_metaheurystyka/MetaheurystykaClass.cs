@@ -191,11 +191,67 @@ namespace ZP_metaheurystyka
             this.NajlepszaJakosc = najlepszaJakosc;
         }
 
+        public List<int> UzyskajJakoscDlaPopulacji()
+        {
+            List<int> listaJakosci = new List<int>();
+            int mnoznik = (100 * this.Populacja[0][0].Count());
+            for (int i = 0; i < Populacja.Count(); i++)
+            {
+                double tmp = 1.0 / ObliczJakoscDopasowania(Populacja[i]) * mnoznik;
+
+                if(tmp < 1)
+                {
+                    tmp = 1;
+                }
+
+                listaJakosci.Add((int)tmp);
+            }
+
+            return listaJakosci;
+        }
+        public List<int> Ruletka()
+        {
+            HashSet<int> wybrane = new HashSet<int>();
+            List<int> listaDoLosowania = new List<int>();
+            List<int> listaWybranych = new List<int>();
+            int wielkoscRuletki = (int)((this.Populacja.Count() * this.ProcentKrzyzowania) / 100);
+            var listaJakosci = UzyskajJakoscDlaPopulacji();
+
+            if (wielkoscRuletki >= listaJakosci.Count)
+            {
+                for(int i = 0; i < listaJakosci.Count; i++)
+                {
+                    listaWybranych.Add(i);
+                }
+                return listaWybranych;
+            }
+
+            for (int i = 0; i < listaJakosci.Count; i++)
+            {
+                for(int j = 0; j < listaJakosci[i]; j++)
+                {
+                    listaDoLosowania.Add(i);
+                }
+            }
+
+            Random losowyIndex = new Random();
+            while (wybrane.Count() != wielkoscRuletki)
+            {
+                wybrane.Add(listaDoLosowania[losowyIndex.Next(listaDoLosowania.Count())]);
+            }
+            listaWybranych.AddRange(wybrane);
+
+            return listaWybranych;
+        }
+
         public void StartMeta()
         {
             StworzPopulacje();
-
-            WybierzNajlepsze();
+            for(int i = 0; i < this.LiczbaIteracji; i++)
+            {
+                var listaWybranych = Ruletka();
+                WybierzNajlepsze();
+            }
         }
     }
 }
