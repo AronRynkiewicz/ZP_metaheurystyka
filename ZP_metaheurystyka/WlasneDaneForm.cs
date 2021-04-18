@@ -73,6 +73,12 @@ namespace ZP_metaheurystyka
 
         private void WczytajInstancjeButton_Click(object sender, EventArgs e)
         {
+            generator.TMPSekwencje.Clear();
+            this.LiczbaSekwencjiTextBox.Clear();
+            this.DlugoscSekwencjiTextBox.Clear();
+            this.AlfabetTextBox.Clear();
+            this.SekwencjeTextBox.Clear();
+
             var sekwencje = string.Empty;
             var sciezka = string.Empty;
 

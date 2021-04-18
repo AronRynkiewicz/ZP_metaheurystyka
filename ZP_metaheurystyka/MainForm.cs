@@ -52,14 +52,17 @@ namespace ZP_metaheurystyka
         {
             GeneratorInstancjiForm GeneratorForm = new GeneratorInstancjiForm(Generator);
             GeneratorForm.FormClosed += new FormClosedEventHandler(GeneratorForm_FormClosed);
+            GeneratorInstancjiButton.Enabled = false;
             GeneratorForm.Show();
         }
 
         void GeneratorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             OdswiezParametryInstancji();
+            WlasneDaneButton.Enabled = true;
+            GeneratorInstancjiButton.Enabled = true;
 
-            if(Generator.PoprawnaInstancja && Parametry.PoprawneParametry)
+            if (Generator.PoprawnaInstancja && Parametry.PoprawneParametry)
             {
                 this.UruchomMetaheurystykeButton.Enabled = true;
             }
@@ -74,6 +77,7 @@ namespace ZP_metaheurystyka
         {
             WlasneDaneForm WlasneForm = new WlasneDaneForm(Generator);
             WlasneForm.FormClosed += new FormClosedEventHandler(GeneratorForm_FormClosed);
+            WlasneDaneButton.Enabled = false;
             WlasneForm.Show();
         }
 
@@ -81,12 +85,14 @@ namespace ZP_metaheurystyka
         {
             ParametryMetaheurystykiForm ParametryForm = new ParametryMetaheurystykiForm(Parametry);
             ParametryForm.FormClosed += new FormClosedEventHandler(ParametryForm_FormClosed);
+            ParamatryHeurystykiBuuton.Enabled = false;
             ParametryForm.Show();
         }
 
         void ParametryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             OdswiezParametryMeta();
+            ParamatryHeurystykiBuuton.Enabled = true;
             if (Generator.PoprawnaInstancja && Parametry.PoprawneParametry)
             {
                 this.UruchomMetaheurystykeButton.Enabled = true;
