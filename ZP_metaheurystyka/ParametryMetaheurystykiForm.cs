@@ -106,6 +106,7 @@ namespace ZP_metaheurystyka
                 parametry.ProcentKrzyzowania = TMPProcentKrzyzowania;
                 parametry.CzestotliwoscMutacji = TMPCzestotliwoscMutacji;
 
+                parametry.PoprawneParametry = true;
                 System.Windows.Forms.MessageBox.Show("Dane zostały zapisane!");
                 this.Close();
             } 

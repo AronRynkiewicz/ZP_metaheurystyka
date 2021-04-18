@@ -16,6 +16,7 @@ namespace ZP_metaheurystyka
         public List<string> Sekwencje { get; set; }
         public int JakoscDopasowania { get; set; }
         public List<string> TMPSekwencje { get; set; }
+        public bool PoprawnaInstancja { get; set; }
 
         public GeneratorInstancjiClass(int liczba_sewkencji, int dlugosc_sekwencji, string alfabet, int procent_przerw, int liczba_mutacji, int jakosc_dopasowania)
         {
@@ -27,6 +28,7 @@ namespace ZP_metaheurystyka
             this.LiczbaMutacji = liczba_mutacji;
             this.JakoscDopasowania = jakosc_dopasowania;
             this.TMPSekwencje = new List<string>();
+            this.PoprawnaInstancja = false;
         }
 
         public List<List<int>> WygenerujMacierz()

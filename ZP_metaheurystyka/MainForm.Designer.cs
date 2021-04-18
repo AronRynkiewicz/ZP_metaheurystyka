@@ -43,6 +43,8 @@ namespace ZP_metaheurystyka
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SekwencjeGroupBox = new System.Windows.Forms.GroupBox();
+            this.MainJakoscDopasowaniaTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@ namespace ZP_metaheurystyka
             this.MainAlfabetTextBox = new System.Windows.Forms.TextBox();
             this.MainDlugoscSekwencjiTextBox = new System.Windows.Forms.TextBox();
             this.MainLiczbaSekwencjiTextBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.MainJakoscDopasowaniaTextBox = new System.Windows.Forms.TextBox();
             this.ParametryGroupBox.SuspendLayout();
             this.SekwencjeGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +94,7 @@ namespace ZP_metaheurystyka
             this.UruchomMetaheurystykeButton.TabIndex = 2;
             this.UruchomMetaheurystykeButton.Text = "Uruchom metaheurystykę";
             this.UruchomMetaheurystykeButton.UseVisualStyleBackColor = false;
+            this.UruchomMetaheurystykeButton.Click += new System.EventHandler(this.UruchomMetaheurystykeButton_Click);
             // 
             // ParamatryHeurystykiBuuton
             // 
@@ -219,6 +220,24 @@ namespace ZP_metaheurystyka
             this.SekwencjeGroupBox.TabStop = false;
             this.SekwencjeGroupBox.Text = "Obecne parametry sekwencji";
             // 
+            // MainJakoscDopasowaniaTextBox
+            // 
+            this.MainJakoscDopasowaniaTextBox.Enabled = false;
+            this.MainJakoscDopasowaniaTextBox.Location = new System.Drawing.Point(281, 249);
+            this.MainJakoscDopasowaniaTextBox.Name = "MainJakoscDopasowaniaTextBox";
+            this.MainJakoscDopasowaniaTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MainJakoscDopasowaniaTextBox.TabIndex = 25;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.Window;
+            this.label10.Location = new System.Drawing.Point(15, 255);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(157, 20);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Jakość dopasowania";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -308,24 +327,6 @@ namespace ZP_metaheurystyka
             this.MainLiczbaSekwencjiTextBox.Name = "MainLiczbaSekwencjiTextBox";
             this.MainLiczbaSekwencjiTextBox.Size = new System.Drawing.Size(100, 26);
             this.MainLiczbaSekwencjiTextBox.TabIndex = 14;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.Window;
-            this.label10.Location = new System.Drawing.Point(15, 255);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 20);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Jakość dopasowania";
-            // 
-            // MainJakoscDopasowaniaTextBox
-            // 
-            this.MainJakoscDopasowaniaTextBox.Enabled = false;
-            this.MainJakoscDopasowaniaTextBox.Location = new System.Drawing.Point(281, 249);
-            this.MainJakoscDopasowaniaTextBox.Name = "MainJakoscDopasowaniaTextBox";
-            this.MainJakoscDopasowaniaTextBox.Size = new System.Drawing.Size(100, 26);
-            this.MainJakoscDopasowaniaTextBox.TabIndex = 25;
             // 
             // MainForm
             // 

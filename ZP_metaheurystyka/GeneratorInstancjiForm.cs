@@ -197,6 +197,7 @@ namespace ZP_metaheurystyka
                 WyswietlSekwencje();
 
                 this.JakoscTextBox.Text = generator.JakoscDopasowania.ToString();
+                generator.PoprawnaInstancja = true;
                 System.Windows.Forms.MessageBox.Show("Dane zostały zapisane!");
                 this.Close();
             }

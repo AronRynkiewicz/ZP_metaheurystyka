@@ -58,6 +58,11 @@ namespace ZP_metaheurystyka
         void GeneratorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             OdswiezParametryInstancji();
+
+            if(Generator.PoprawnaInstancja && Parametry.PoprawneParametry)
+            {
+                this.UruchomMetaheurystykeButton.Enabled = true;
+            }
         }
 
         private void WlasneDaneButton_Click(object sender, EventArgs e)
@@ -77,8 +82,16 @@ namespace ZP_metaheurystyka
         void ParametryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             OdswiezParametryMeta();
+            if (Generator.PoprawnaInstancja && Parametry.PoprawneParametry)
+            {
+                this.UruchomMetaheurystykeButton.Enabled = true;
+            }
         }
 
-
+        private void UruchomMetaheurystykeButton_Click(object sender, EventArgs e)
+        {
+            UruchomMetaheurystykeForm MetaheurystykaForm = new UruchomMetaheurystykeForm();
+            MetaheurystykaForm.Show();
+        }
     }
 }

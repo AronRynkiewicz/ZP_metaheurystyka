@@ -138,6 +138,7 @@ namespace ZP_metaheurystyka
 
                 WyswietlSekwencje();
 
+                generator.PoprawnaInstancja = true;
                 System.Windows.Forms.MessageBox.Show("Dane zostały zapisane!");
                 this.Close();
             }

@@ -12,6 +12,7 @@ namespace ZP_metaheurystyka
         public int WielkoscPopulacji { get; set; }
         public double ProcentKrzyzowania { get; set; }
         public double CzestotliwoscMutacji { get; set; }
+        public bool PoprawneParametry { get; set; }
 
         public ParametryMetaheurystykiClass(int iteracje, int populacja, double krzyzowanie, double mutacje)
         {
@@ -19,6 +20,7 @@ namespace ZP_metaheurystyka
             this.WielkoscPopulacji = populacja;
             this.ProcentKrzyzowania = krzyzowanie;
             this.CzestotliwoscMutacji = mutacje;
+            this.PoprawneParametry = false;
         }
     }
 }
