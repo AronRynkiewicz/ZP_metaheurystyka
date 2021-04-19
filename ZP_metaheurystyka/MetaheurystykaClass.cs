@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ZP_metaheurystyka
 {
@@ -172,14 +174,17 @@ namespace ZP_metaheurystyka
             return obecna_jakosc;
         }
 
-        public void WybierzNajlepsze()
+        public int WybierzNajlepsze()
         {
             int index = 0;
             int najlepszaJakosc = 0;
+            List<int> Jakosci = new List<int>();
 
             for(int i = 0; i < Populacja.Count; i++)
             {
                 int obliczonaJakosc = ObliczJakoscDopasowania(Populacja[i]);
+                Jakosci.Add(obliczonaJakosc);
+
                 if (obliczonaJakosc < najlepszaJakosc || najlepszaJakosc == 0)
                 {
                     najlepszaJakosc = obliczonaJakosc;
@@ -189,6 +194,8 @@ namespace ZP_metaheurystyka
 
             this.NajlepszeDopasowanie = Populacja[index];
             this.NajlepszaJakosc = najlepszaJakosc;
+
+            return (int)Jakosci.Average();
         }
 
         public List<int> UzyskajJakoscDlaPopulacji()
@@ -243,14 +250,29 @@ namespace ZP_metaheurystyka
 
             return listaWybranych;
         }
-
-        public void StartMeta()
+        public void StartMeta(BackgroundWorker worker, DoWorkEventArgs e)
         {
+            Queue<int> SredniaJakosc = new Queue<int>();
+            int obecnaSredniaJakosc = 0;
+
             StworzPopulacje();
             for(int i = 0; i < this.LiczbaIteracji; i++)
             {
+                if (worker.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+
                 var listaWybranych = Ruletka();
-                WybierzNajlepsze();
+                obecnaSredniaJakosc = WybierzNajlepsze();
+
+                if(SredniaJakosc.Count == 10)
+                {
+                    SredniaJakosc.Dequeue();
+                }
+                SredniaJakosc.Enqueue(obecnaSredniaJakosc);
+                worker.ReportProgress(i, new List<int>(SredniaJakosc));
             }
         }
     }
