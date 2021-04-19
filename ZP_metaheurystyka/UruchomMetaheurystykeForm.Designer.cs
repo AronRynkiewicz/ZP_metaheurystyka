@@ -30,9 +30,9 @@ namespace ZP_metaheurystyka
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.InstancjaTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.JakoscInstancjiTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.InstancjaTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.JakoscDopasowaniaTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,17 +54,13 @@ namespace ZP_metaheurystyka
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Instancja";
             // 
-            // InstancjaTextBox
+            // JakoscInstancjiTextBox
             // 
-            this.InstancjaTextBox.Enabled = false;
-            this.InstancjaTextBox.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.InstancjaTextBox.Location = new System.Drawing.Point(25, 40);
-            this.InstancjaTextBox.Multiline = true;
-            this.InstancjaTextBox.Name = "InstancjaTextBox";
-            this.InstancjaTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.InstancjaTextBox.Size = new System.Drawing.Size(852, 450);
-            this.InstancjaTextBox.TabIndex = 0;
-            this.InstancjaTextBox.WordWrap = false;
+            this.JakoscInstancjiTextBox.Enabled = false;
+            this.JakoscInstancjiTextBox.Location = new System.Drawing.Point(410, 530);
+            this.JakoscInstancjiTextBox.Name = "JakoscInstancjiTextBox";
+            this.JakoscInstancjiTextBox.Size = new System.Drawing.Size(139, 26);
+            this.JakoscInstancjiTextBox.TabIndex = 16;
             // 
             // label6
             // 
@@ -76,13 +72,16 @@ namespace ZP_metaheurystyka
             this.label6.TabIndex = 15;
             this.label6.Text = "Jakość instancji:";
             // 
-            // JakoscInstancjiTextBox
+            // InstancjaTextBox
             // 
-            this.JakoscInstancjiTextBox.Enabled = false;
-            this.JakoscInstancjiTextBox.Location = new System.Drawing.Point(410, 530);
-            this.JakoscInstancjiTextBox.Name = "JakoscInstancjiTextBox";
-            this.JakoscInstancjiTextBox.Size = new System.Drawing.Size(139, 26);
-            this.JakoscInstancjiTextBox.TabIndex = 16;
+            this.InstancjaTextBox.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.InstancjaTextBox.Location = new System.Drawing.Point(25, 40);
+            this.InstancjaTextBox.Multiline = true;
+            this.InstancjaTextBox.Name = "InstancjaTextBox";
+            this.InstancjaTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.InstancjaTextBox.Size = new System.Drawing.Size(852, 450);
+            this.InstancjaTextBox.TabIndex = 0;
+            this.InstancjaTextBox.WordWrap = false;
             // 
             // groupBox2
             // 
@@ -117,7 +116,6 @@ namespace ZP_metaheurystyka
             // 
             // DopasowanieTextBox
             // 
-            this.DopasowanieTextBox.Enabled = false;
             this.DopasowanieTextBox.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.DopasowanieTextBox.Location = new System.Drawing.Point(25, 40);
             this.DopasowanieTextBox.Multiline = true;
