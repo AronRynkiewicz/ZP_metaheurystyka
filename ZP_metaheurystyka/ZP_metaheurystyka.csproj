@@ -88,6 +88,12 @@
     <Compile Include="ZapiszInstancjeDoPlikuForm.Designer.cs">
       <DependentUpon>ZapiszInstancjeDoPlikuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZmienWTrakcieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZmienWTrakcieForm.Designer.cs">
+      <DependentUpon>ZmienWTrakcieForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GeneratorInstancjiForm.resx">
       <DependentUpon>GeneratorInstancjiForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ZapiszInstancjeDoPlikuForm.resx">
       <DependentUpon>ZapiszInstancjeDoPlikuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZmienWTrakcieForm.resx">
+      <DependentUpon>ZmienWTrakcieForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

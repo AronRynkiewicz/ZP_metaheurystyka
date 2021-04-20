@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.ComponentModel;
 
@@ -266,7 +266,7 @@ namespace ZP_metaheurystyka
 
             return listaWybranych;
         }
-        public void StartMeta(BackgroundWorker worker, DoWorkEventArgs e)
+        public void StartMeta(BackgroundWorker worker, DoWorkEventArgs e, ManualResetEvent wstrzymajMeta)
         {
             Queue<int> SredniaJakosc = new Queue<int>();
             int obecnaSredniaJakosc = 0;
@@ -274,6 +274,7 @@ namespace ZP_metaheurystyka
             StworzPopulacje();
             for(int i = 0; i < this.LiczbaIteracji; i++)
             {
+                wstrzymajMeta.WaitOne(Timeout.Infinite);
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;

@@ -165,6 +165,7 @@ namespace ZP_metaheurystyka
             this.PauzaButton.TabIndex = 20;
             this.PauzaButton.Text = "Pauza";
             this.PauzaButton.UseVisualStyleBackColor = false;
+            this.PauzaButton.Click += new System.EventHandler(this.PauzaButton_Click);
             // 
             // StopButton
             // 

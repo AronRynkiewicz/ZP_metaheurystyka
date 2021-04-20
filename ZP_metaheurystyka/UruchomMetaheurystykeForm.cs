@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -16,6 +16,7 @@ namespace ZP_metaheurystyka
         public GeneratorInstancjiClass generator = new GeneratorInstancjiClass(0, 0, "ACGT", 0, 0, 0);
         public ParametryMetaheurystykiClass parametry = new ParametryMetaheurystykiClass(0, 0, 0, 0);
         public MetaheurystykaClass heurystyka = new MetaheurystykaClass(new List<string>(), new List<char>(), 0, 0, 0, 0);
+        public ManualResetEvent wstrzymajMeta = new ManualResetEvent(true);
 
         public void Zauktalizuj(TextBox poleTekstowe, TextBox poleJakosci, List<string> dopasowanie, int jakosc)
         {
@@ -43,7 +44,7 @@ namespace ZP_metaheurystyka
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             heurystyka = new MetaheurystykaClass(generator.Sekwencje, generator.Alfabet, parametry.LiczbaIteracji, parametry.WielkoscPopulacji, parametry.ProcentKrzyzowania, parametry.CzestotliwoscMutacji);
-            heurystyka.StartMeta(worker, e);
+            heurystyka.StartMeta(worker, e, this.wstrzymajMeta);
         }
 
         private void UruchomMetaheurystykeForm_Load(object sender, EventArgs e)
@@ -109,6 +110,26 @@ namespace ZP_metaheurystyka
                 Zauktalizuj(this.DopasowanieTextBox, this.JakoscDopasowaniaTextBox, heurystyka.NajlepszeDopasowanie, heurystyka.NajlepszaJakosc);
                 MetaProgressBar.Value = 0;
             }
+        }
+
+        private void PauzaButton_Click(object sender, EventArgs e)
+        {
+            this.wstrzymajMeta.Reset();
+
+            ZmienWTrakcieForm ZmienForm = new ZmienWTrakcieForm(parametry, MetaProgressBar.Value);
+            ZmienForm.FormClosed += new FormClosedEventHandler(ZmienForm_FormClosed);
+            ZmienForm.Show();
+        }
+
+        void ZmienForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            heurystyka.LiczbaIteracji = parametry.LiczbaIteracji;
+            heurystyka.ProcentKrzyzowania = parametry.ProcentKrzyzowania;
+            heurystyka.CzestotliwoscMutacji = parametry.CzestotliwoscMutacji;
+
+            MetaProgressBar.Maximum = parametry.LiczbaIteracji - 1;
+
+            this.wstrzymajMeta.Set();
         }
     }
 }
