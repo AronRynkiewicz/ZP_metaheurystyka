@@ -224,6 +224,16 @@ namespace ZP_metaheurystyka
             int wielkoscRuletki = (int)((this.Populacja.Count() * this.ProcentKrzyzowania) / 100);
             var listaJakosci = UzyskajJakoscDlaPopulacji();
 
+            if(wielkoscRuletki < 2)
+            {
+                wielkoscRuletki = 2;
+            }
+
+            if(wielkoscRuletki % 2 == 1)
+            {
+                wielkoscRuletki += 1;
+            }
+
             if (wielkoscRuletki >= listaJakosci.Count)
             {
                 for(int i = 0; i < listaJakosci.Count; i++)
