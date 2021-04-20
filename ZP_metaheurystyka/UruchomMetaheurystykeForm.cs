@@ -57,7 +57,7 @@ namespace ZP_metaheurystyka
             this.PauzaButton.Enabled = true;
             this.UruchomMetaheurystykeButton.Enabled = false;
 
-            MetaProgressBar.Maximum = parametry.LiczbaIteracji;
+            MetaProgressBar.Maximum = parametry.LiczbaIteracji - 1;
             MetaProgressBar.Step = 1;
             MetaProgressBar.Value = 0;
 
@@ -107,6 +107,7 @@ namespace ZP_metaheurystyka
             else
             {
                 Zauktalizuj(this.DopasowanieTextBox, this.JakoscDopasowaniaTextBox, heurystyka.NajlepszeDopasowanie, heurystyka.NajlepszaJakosc);
+                MetaProgressBar.Value = 0;
             }
         }
     }

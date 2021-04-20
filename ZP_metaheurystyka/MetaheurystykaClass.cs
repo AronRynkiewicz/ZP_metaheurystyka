@@ -236,7 +236,13 @@ namespace ZP_metaheurystyka
 
             if (wielkoscRuletki >= listaJakosci.Count)
             {
-                for(int i = 0; i < listaJakosci.Count; i++)
+                int tmp = 0;
+                if(listaJakosci.Count % 2 == 1)
+                {
+                    tmp = 1;
+                }
+
+                for(int i = 0; i < (listaJakosci.Count - tmp); i++)
                 {
                     listaWybranych.Add(i);
                 }
