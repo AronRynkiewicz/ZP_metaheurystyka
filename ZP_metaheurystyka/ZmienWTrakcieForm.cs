@@ -43,7 +43,7 @@ namespace ZP_metaheurystyka
                 TMPLiczbaIteracji = Int32.Parse(this.LiczbaIteracjiTextBox.Text);
                 if (TMPLiczbaIteracji <= 0 || TMPLiczbaIteracji <= this.minimumIteracji + 10)
                 {
-                    Ostrzezenia.Add("Liczba iteracji (możliwy powód: podana liczba iteracji jest mniejsza lub równa obecnej liczbie iteracji, wartość powinna być co najmniej o 10 większa od obecnej)");
+                    Ostrzezenia.Add("Liczba iteracji, nowa liczba iteracji musi być większa, niż: " + (this.minimumIteracji + 10).ToString());
                 }
             }
             catch
@@ -84,7 +84,7 @@ namespace ZP_metaheurystyka
             }
             else if (Ostrzezenia.Count != 0)
             {
-                System.Windows.Forms.MessageBox.Show("Dane nie zostały zapisane ze względu na ujemne lub równe 0 wartości w następujących polach: \n -" + String.Join("\n - ", Ostrzezenia.ToArray()), "Uwaga!");
+                System.Windows.Forms.MessageBox.Show("Dane nie zostały zapisane ze względu na błędne wartości w następujących polach: \n -" + String.Join("\n - ", Ostrzezenia.ToArray()), "Uwaga!");
             }
             else
             {
