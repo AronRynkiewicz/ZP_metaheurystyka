@@ -88,6 +88,12 @@
     <Compile Include="ZapiszInstancjeDoPlikuForm.Designer.cs">
       <DependentUpon>ZapiszInstancjeDoPlikuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZapiszWynikDoPliku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZapiszWynikDoPliku.Designer.cs">
+      <DependentUpon>ZapiszWynikDoPliku.cs</DependentUpon>
+    </Compile>
     <Compile Include="ZmienWTrakcieForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ZapiszInstancjeDoPlikuForm.resx">
       <DependentUpon>ZapiszInstancjeDoPlikuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZapiszWynikDoPliku.resx">
+      <DependentUpon>ZapiszWynikDoPliku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ZmienWTrakcieForm.resx">
       <DependentUpon>ZmienWTrakcieForm.cs</DependentUpon>

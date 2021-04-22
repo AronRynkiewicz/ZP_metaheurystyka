@@ -29,9 +29,9 @@ namespace ZP_metaheurystyka
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.JakoscInstancjiTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@ namespace ZP_metaheurystyka
             this.StopButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.wykresJakosci = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ZapiszDoPlikuButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wykresJakosci)).BeginInit();
@@ -188,20 +189,33 @@ namespace ZP_metaheurystyka
             // 
             // wykresJakosci
             // 
-            chartArea1.Name = "ChartArea1";
-            this.wykresJakosci.ChartAreas.Add(chartArea1);
-            legend1.Name = "Średnia Jakość";
-            this.wykresJakosci.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.wykresJakosci.ChartAreas.Add(chartArea3);
+            legend3.Name = "Średnia Jakość";
+            this.wykresJakosci.Legends.Add(legend3);
             this.wykresJakosci.Location = new System.Drawing.Point(37, 687);
             this.wykresJakosci.Name = "wykresJakosci";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Średnia Jakość";
-            series1.Name = "Series1";
-            this.wykresJakosci.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Średnia Jakość";
+            series3.Name = "Series1";
+            this.wykresJakosci.Series.Add(series3);
             this.wykresJakosci.Size = new System.Drawing.Size(1058, 300);
             this.wykresJakosci.TabIndex = 22;
             this.wykresJakosci.Text = "chart1";
+            // 
+            // ZapiszDoPlikuButton
+            // 
+            this.ZapiszDoPlikuButton.BackColor = System.Drawing.SystemColors.Window;
+            this.ZapiszDoPlikuButton.Enabled = false;
+            this.ZapiszDoPlikuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ZapiszDoPlikuButton.Location = new System.Drawing.Point(1287, 744);
+            this.ZapiszDoPlikuButton.Name = "ZapiszDoPlikuButton";
+            this.ZapiszDoPlikuButton.Size = new System.Drawing.Size(250, 85);
+            this.ZapiszDoPlikuButton.TabIndex = 23;
+            this.ZapiszDoPlikuButton.Text = "Zapisz wynik do pliku";
+            this.ZapiszDoPlikuButton.UseVisualStyleBackColor = false;
+            this.ZapiszDoPlikuButton.Click += new System.EventHandler(this.ZapiszDoPlikuButton_Click);
             // 
             // UruchomMetaheurystykeForm
             // 
@@ -209,6 +223,7 @@ namespace ZP_metaheurystyka
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1898, 1024);
+            this.Controls.Add(this.ZapiszDoPlikuButton);
             this.Controls.Add(this.wykresJakosci);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.PauzaButton);
@@ -246,5 +261,6 @@ namespace ZP_metaheurystyka
         private System.Windows.Forms.Button StopButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataVisualization.Charting.Chart wykresJakosci;
+        private System.Windows.Forms.Button ZapiszDoPlikuButton;
     }
 }

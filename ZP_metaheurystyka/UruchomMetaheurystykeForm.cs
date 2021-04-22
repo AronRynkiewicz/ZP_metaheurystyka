@@ -57,6 +57,7 @@ namespace ZP_metaheurystyka
             this.StopButton.Enabled = true;
             this.PauzaButton.Enabled = true;
             this.UruchomMetaheurystykeButton.Enabled = false;
+            this.ZapiszDoPlikuButton.Enabled = false;
 
             MetaProgressBar.Maximum = parametry.LiczbaIteracji - 1;
             MetaProgressBar.Step = 1;
@@ -75,6 +76,7 @@ namespace ZP_metaheurystyka
                 backgroundWorker1.CancelAsync();
             }
             this.UruchomMetaheurystykeButton.Enabled = true;
+            this.ZapiszDoPlikuButton.Enabled = true;
         }
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -100,6 +102,11 @@ namespace ZP_metaheurystyka
             if (e.Cancelled == true)
             {
                 Zauktalizuj(this.DopasowanieTextBox, this.JakoscDopasowaniaTextBox, heurystyka.NajlepszeDopasowanie, heurystyka.NajlepszaJakosc);
+                this.UruchomMetaheurystykeButton.Enabled = true;
+                this.ZapiszDoPlikuButton.Enabled = true;
+                this.StopButton.Enabled = false;
+                this.PauzaButton.Enabled = false;
+                MetaProgressBar.Value = 0;
             }
             else if (e.Error != null)
             {
@@ -108,6 +115,10 @@ namespace ZP_metaheurystyka
             else
             {
                 Zauktalizuj(this.DopasowanieTextBox, this.JakoscDopasowaniaTextBox, heurystyka.NajlepszeDopasowanie, heurystyka.NajlepszaJakosc);
+                this.UruchomMetaheurystykeButton.Enabled = true;
+                this.ZapiszDoPlikuButton.Enabled = true;
+                this.StopButton.Enabled = false;
+                this.PauzaButton.Enabled = false;
                 MetaProgressBar.Value = 0;
             }
         }
@@ -130,6 +141,12 @@ namespace ZP_metaheurystyka
             MetaProgressBar.Maximum = parametry.LiczbaIteracji - 1;
 
             this.wstrzymajMeta.Set();
+        }
+
+        private void ZapiszDoPlikuButton_Click(object sender, EventArgs e)
+        {
+            ZapiszWynikDoPliku zapiszWynik = new ZapiszWynikDoPliku(heurystyka);
+            zapiszWynik.Show();
         }
     }
 }
