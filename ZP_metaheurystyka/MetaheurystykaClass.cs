@@ -63,7 +63,7 @@ namespace ZP_metaheurystyka
             {
                 if(dopasowanie[i].Count() != maksymalnaDlugosc)
                 {
-                    for(int j = 0; j < maksymalnaDlugosc - dopasowanie[i].Count(); i++)
+                    for(int j = 0; j < maksymalnaDlugosc - dopasowanie[i].Count(); j++)
                     {
                         dopasowanie[i].Add('_');
                     }
@@ -177,7 +177,7 @@ namespace ZP_metaheurystyka
         public int WybierzNajlepsze()
         {
             int index = 0;
-            int najlepszaJakosc = 0;
+            int najlepszaJakosc = this.NajlepszaJakosc;
             List<int> Jakosci = new List<int>();
 
             for(int i = 0; i < Populacja.Count; i++)
@@ -266,13 +266,259 @@ namespace ZP_metaheurystyka
 
             return listaWybranych;
         }
+
+        public List<string> PoprawDlugoscOsobnika(List<string> osobnik)
+        {
+            int maksymalnaDlugosc = 0;
+            for (int i = 0; i < osobnik.Count; i++)
+            {
+                if (osobnik[i].Count() > maksymalnaDlugosc)
+                {
+                    maksymalnaDlugosc = osobnik[i].Count();
+                }
+            }
+
+            for (int i = 0; i < osobnik.Count; i++)
+            {
+                if (osobnik[i].Count() != maksymalnaDlugosc)
+                {
+                    int dlugosc = maksymalnaDlugosc - osobnik[i].Count();
+                    for (int j = 0; j < dlugosc; j++)
+                    {
+                        osobnik[i] += '_';
+                    }
+                }
+            }
+
+            return osobnik;
+        }
+
+        public List<string> PoprawBledy(List<string> osobnik)
+        {
+            osobnik = PoprawDlugoscOsobnika(osobnik);
+
+            for (int pos = 0; pos < osobnik[0].Count(); pos++)
+            {
+                Dictionary<char, int> wystapienia_zasad = new Dictionary<char, int>();
+
+                for (int index_sekwencji = 0; index_sekwencji < osobnik.Count(); index_sekwencji++)
+                {
+                    try
+                    {
+                        wystapienia_zasad[osobnik[index_sekwencji][pos]] += 1;
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        wystapienia_zasad.Add(osobnik[index_sekwencji][pos], 1);
+                    }
+                }
+
+                wystapienia_zasad.Remove('_');
+                if (wystapienia_zasad.Count <= 1)
+                {
+                    continue;
+                }
+
+                char bledna_zasada = wystapienia_zasad.OrderBy(kvp => kvp.Value).First().Key;
+
+                for (int index_sekwencji = 0; index_sekwencji < osobnik.Count(); index_sekwencji++)
+                {
+                    List<char> tmp_sekwencja = new List<char>(osobnik[index_sekwencji]);
+
+                    if (tmp_sekwencja[pos] == bledna_zasada)
+                    {
+                        if (pos < tmp_sekwencja.Count())
+                        {
+                            tmp_sekwencja.Insert(pos + 1, '_');
+                        }
+                        else
+                        {
+                            tmp_sekwencja.Add('_');
+                        }
+                    }
+
+                    if (tmp_sekwencja[pos] != bledna_zasada)
+                    {
+                        tmp_sekwencja.Insert(pos, '_');
+                    }
+                    osobnik[index_sekwencji] = new string(tmp_sekwencja.ToArray());
+                }
+
+                wystapienia_zasad.Clear();
+            }
+
+            return osobnik;
+        }
+
+        public List<string> UsunPusteKolumny(List<string> osobnik)
+        {
+            List<string> noweSekwencje = new List<string>();
+
+            for (int i = 0; i < osobnik.Count(); i++)
+            {
+                noweSekwencje.Add(string.Empty);
+            }
+
+            for (int pos = 0; pos < osobnik[0].Count(); pos++)
+            {
+                int licznik = 0;
+                for (int index = 0; index < osobnik.Count(); index++)
+                {
+                    if (osobnik[index][pos] == '_')
+                    {
+                        licznik++;
+                    }
+                }
+
+                if (licznik == osobnik.Count())
+                {
+                    continue;
+                }
+
+                for (int index = 0; index < osobnik.Count(); index++)
+                {
+                    noweSekwencje[index] += osobnik[index][pos];
+                }
+            }
+
+            return noweSekwencje;
+        }
+
+        public void PierwszeKrzyzowanie(List<int> listaWybranych)
+        {
+            int pierwszyIndex = 0;
+            int drugiIndex = 0;
+            Random r = new Random();
+
+            while (listaWybranych.Count() != 0)
+            {
+                pierwszyIndex = listaWybranych[0];
+                drugiIndex = listaWybranych[1];
+
+                int indexZamiany = r.Next(2);
+
+                for(int i = 0; i < this.Populacja[pierwszyIndex].Count(); i++)
+                {
+                    if (i % 2 == indexZamiany)
+                    {
+                        string tmpPierwszyString = this.Populacja[pierwszyIndex][i];
+                        string tmpDrugiString = this.Populacja[drugiIndex][i];
+
+                        this.Populacja[pierwszyIndex][i] = tmpDrugiString;
+                        this.Populacja[drugiIndex][i] = tmpPierwszyString;
+                    }
+                }
+
+                this.Populacja[pierwszyIndex] = PoprawBledy(this.Populacja[pierwszyIndex]);
+                this.Populacja[pierwszyIndex] = UsunPusteKolumny(this.Populacja[pierwszyIndex]);
+
+                this.Populacja[drugiIndex] = PoprawBledy(this.Populacja[drugiIndex]);
+                this.Populacja[drugiIndex] = UsunPusteKolumny(this.Populacja[drugiIndex]);
+
+
+                listaWybranych.RemoveAt(0);
+                listaWybranych.RemoveAt(0);
+            }
+        }
+
+        public void DrugieKrzyzowanie(List<int> listaWybranych)
+        {
+            int pierwszyIndex = 0;
+            int drugiIndex = 0;
+            Random r = new Random();
+
+            while (listaWybranych.Count() != 0)
+            {
+                pierwszyIndex = listaWybranych[0];
+                drugiIndex = listaWybranych[1];
+
+                int indexZamiany = r.Next((this.OryginalneSekwencje[0].Count() - 2));
+                List<string> CzescPierwszejSekwencji = new List<string>();
+                List<string> CzescDrugiejSekwencji = new List<string>();
+
+
+                for (int i = 0; i < this.Populacja[pierwszyIndex].Count(); i++)
+                {
+                    string PierwszaCzesc = "";
+                    string DrugaCzesc = "";
+                    int counter = 0;
+                    for(int j = 0; j < this.Populacja[pierwszyIndex][i].Count(); j++)
+                    {
+                        char tmp = this.Populacja[pierwszyIndex][i][j];
+                        if (counter >= indexZamiany)
+                        {
+                            DrugaCzesc += tmp;
+                        }
+                        else
+                        {
+                            PierwszaCzesc += tmp;
+                        }
+
+                        if (tmp != '_')
+                        {
+                            counter += 1;
+                        }
+                    }
+                    CzescPierwszejSekwencji.Add(PierwszaCzesc);
+                    this.Populacja[pierwszyIndex][i] = DrugaCzesc;
+
+
+                    PierwszaCzesc = "";
+                    DrugaCzesc = "";
+                    counter = 0;
+                    for (int j = 0; j < this.Populacja[drugiIndex][i].Count(); j++)
+                    {
+                        char tmp = this.Populacja[drugiIndex][i][j];
+                        if (counter >= indexZamiany)
+                        {
+                            DrugaCzesc += tmp;
+                        }
+                        else
+                        {
+                            PierwszaCzesc += tmp;
+                        }
+
+                        if (tmp != '_')
+                        {
+                            counter += 1;
+                        }
+                    }
+                    CzescDrugiejSekwencji.Add(PierwszaCzesc);
+                    this.Populacja[drugiIndex][i] = DrugaCzesc;
+                }
+
+                for(int i = 0; i < CzescPierwszejSekwencji.Count(); i++)
+                {
+                    this.Populacja[pierwszyIndex][i] = CzescDrugiejSekwencji[i] + this.Populacja[pierwszyIndex][i];
+                    this.Populacja[drugiIndex][i] = CzescPierwszejSekwencji[i] + this.Populacja[drugiIndex][i];
+                }
+
+                this.Populacja[pierwszyIndex] = PoprawBledy(this.Populacja[pierwszyIndex]);
+                this.Populacja[pierwszyIndex] = UsunPusteKolumny(this.Populacja[pierwszyIndex]);
+
+                this.Populacja[drugiIndex] = PoprawBledy(this.Populacja[drugiIndex]);
+                this.Populacja[drugiIndex] = UsunPusteKolumny(this.Populacja[drugiIndex]);
+
+
+                listaWybranych.RemoveAt(0);
+                listaWybranych.RemoveAt(0);
+            }
+        }
+
+        public void Krzyzowanie(List<int> listaWybranych)
+        {
+            PierwszeKrzyzowanie(listaWybranych);
+            DrugieKrzyzowanie(listaWybranych);
+        }
+
         public void StartMeta(BackgroundWorker worker, DoWorkEventArgs e, ManualResetEvent wstrzymajMeta)
         {
             Queue<int> SredniaJakosc = new Queue<int>();
             int obecnaSredniaJakosc = 0;
 
             StworzPopulacje();
-            for(int i = 0; i < this.LiczbaIteracji; i++)
+            WybierzNajlepsze();
+            for (int i = 0; i < this.LiczbaIteracji; i++)
             {
                 wstrzymajMeta.WaitOne(Timeout.Infinite);
                 if (worker.CancellationPending == true)
@@ -282,6 +528,11 @@ namespace ZP_metaheurystyka
                 }
 
                 var listaWybranych = Ruletka();
+                if(listaWybranych.Count() % 2 != 0)
+                {
+                    listaWybranych.RemoveAt(0);
+                }
+                Krzyzowanie(listaWybranych);
                 obecnaSredniaJakosc = WybierzNajlepsze();
 
                 if(SredniaJakosc.Count == 10)
