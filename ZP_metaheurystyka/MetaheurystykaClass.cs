@@ -176,24 +176,19 @@ namespace ZP_metaheurystyka
 
         public int WybierzNajlepsze()
         {
-            int index = 0;
-            int najlepszaJakosc = this.NajlepszaJakosc;
             List<int> Jakosci = new List<int>();
 
-            for(int i = 0; i < Populacja.Count; i++)
+            for (int i = 0; i < Populacja.Count; i++)
             {
                 int obliczonaJakosc = ObliczJakoscDopasowania(Populacja[i]);
                 Jakosci.Add(obliczonaJakosc);
 
-                if (obliczonaJakosc < najlepszaJakosc || najlepszaJakosc == 0)
+                if (obliczonaJakosc < this.NajlepszaJakosc || this.NajlepszaJakosc == 0)
                 {
-                    najlepszaJakosc = obliczonaJakosc;
-                    index = i;
+                    this.NajlepszeDopasowanie = new List<string>(Populacja[i]);
+                    this.NajlepszaJakosc = obliczonaJakosc;
                 }
             }
-
-            this.NajlepszeDopasowanie = Populacja[index];
-            this.NajlepszaJakosc = najlepszaJakosc;
 
             return (int)Jakosci.Average();
         }
@@ -507,7 +502,10 @@ namespace ZP_metaheurystyka
 
         public void Krzyzowanie(List<int> listaWybranych)
         {
-            PierwszeKrzyzowanie(listaWybranych);
+            //listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
+            //PierwszeKrzyzowanie(listaWybranych);
+
+            listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
             DrugieKrzyzowanie(listaWybranych);
         }
 
