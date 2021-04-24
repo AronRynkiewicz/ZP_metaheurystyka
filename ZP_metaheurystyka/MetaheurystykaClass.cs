@@ -379,16 +379,33 @@ namespace ZP_metaheurystyka
             return noweSekwencje;
         }
 
-        public void PierwszeKrzyzowanie(List<int> listaWybranych)
+        public List<List<string>> PierwszeKrzyzowanie(List<int> listaWybranych)
         {
+            List<List<string>> nowaPopulacja = new List<List<string>>();
             int pierwszyIndex = 0;
             int drugiIndex = 0;
+            bool flaga = false;
             Random r = new Random();
+
+            if((listaWybranych.Count() / 2) % 1 != 0)
+            {
+                flaga = true;
+            }
 
             while (listaWybranych.Count() != 0)
             {
-                pierwszyIndex = listaWybranych[0];
-                drugiIndex = listaWybranych[1];
+                List<string> tmpDopasowanie = new List<string>();
+                if(flaga == true)
+                {
+                    pierwszyIndex = 1;
+                    drugiIndex = listaWybranych.Count - 1;
+
+                }
+                else
+                {
+                    pierwszyIndex = listaWybranych[0];
+                    drugiIndex = listaWybranych[1];
+                }
 
                 int indexZamiany = r.Next(2);
 
@@ -396,50 +413,51 @@ namespace ZP_metaheurystyka
                 {
                     if (i % 2 == indexZamiany)
                     {
-                        string tmpPierwszyString = this.Populacja[pierwszyIndex][i];
-                        string tmpDrugiString = this.Populacja[drugiIndex][i];
-
-                        this.Populacja[pierwszyIndex][i] = tmpDrugiString;
-                        this.Populacja[drugiIndex][i] = tmpPierwszyString;
+                        tmpDopasowanie.Add(this.Populacja[pierwszyIndex][i]);
+                    }
+                    else
+                    {
+                        tmpDopasowanie.Add(this.Populacja[drugiIndex][i]);
                     }
                 }
 
-                this.Populacja[pierwszyIndex] = PoprawBledy(this.Populacja[pierwszyIndex]);
-                this.Populacja[pierwszyIndex] = UsunPusteKolumny(this.Populacja[pierwszyIndex]);
+                tmpDopasowanie = PoprawBledy(tmpDopasowanie);
+                tmpDopasowanie = UsunPusteKolumny(tmpDopasowanie);
 
-                this.Populacja[drugiIndex] = PoprawBledy(this.Populacja[drugiIndex]);
-                this.Populacja[drugiIndex] = UsunPusteKolumny(this.Populacja[drugiIndex]);
+                nowaPopulacja.Add(new List<string>(tmpDopasowanie));
 
+                if(flaga == true)
+                {
+                    flaga = false;
+                    continue;
+                }
 
                 listaWybranych.RemoveAt(0);
                 listaWybranych.RemoveAt(0);
             }
+
+            return nowaPopulacja;
         }
 
-        public void DrugieKrzyzowanie(List<int> listaWybranych)
+        public List<List<string>> DrugieKrzyzowanie(List<List<string>> nowaPopulacja)
         {
-            int pierwszyIndex = 0;
-            int drugiIndex = 0;
             Random r = new Random();
 
-            while (listaWybranych.Count() != 0)
-            {
-                pierwszyIndex = listaWybranych[0];
-                drugiIndex = listaWybranych[1];
-
+           for(int mainCounter = 0; mainCounter < nowaPopulacja.Count; mainCounter += 2)
+           {
                 int indexZamiany = r.Next((this.OryginalneSekwencje[0].Count() - 2));
                 List<string> CzescPierwszejSekwencji = new List<string>();
                 List<string> CzescDrugiejSekwencji = new List<string>();
 
 
-                for (int i = 0; i < this.Populacja[pierwszyIndex].Count(); i++)
+                for (int i = 0; i < nowaPopulacja[mainCounter].Count(); i++)
                 {
                     string PierwszaCzesc = "";
                     string DrugaCzesc = "";
                     int counter = 0;
-                    for(int j = 0; j < this.Populacja[pierwszyIndex][i].Count(); j++)
+                    for(int j = 0; j < nowaPopulacja[mainCounter][i].Count(); j++)
                     {
-                        char tmp = this.Populacja[pierwszyIndex][i][j];
+                        char tmp = nowaPopulacja[mainCounter][i][j];
                         if (counter >= indexZamiany)
                         {
                             DrugaCzesc += tmp;
@@ -455,15 +473,14 @@ namespace ZP_metaheurystyka
                         }
                     }
                     CzescPierwszejSekwencji.Add(PierwszaCzesc);
-                    this.Populacja[pierwszyIndex][i] = DrugaCzesc;
-
+                    nowaPopulacja[mainCounter][i] = DrugaCzesc;
 
                     PierwszaCzesc = "";
                     DrugaCzesc = "";
                     counter = 0;
-                    for (int j = 0; j < this.Populacja[drugiIndex][i].Count(); j++)
+                    for (int j = 0; j < nowaPopulacja[mainCounter + 1][i].Count(); j++)
                     {
-                        char tmp = this.Populacja[drugiIndex][i][j];
+                        char tmp = nowaPopulacja[mainCounter + 1][i][j];
                         if (counter >= indexZamiany)
                         {
                             DrugaCzesc += tmp;
@@ -479,34 +496,56 @@ namespace ZP_metaheurystyka
                         }
                     }
                     CzescDrugiejSekwencji.Add(PierwszaCzesc);
-                    this.Populacja[drugiIndex][i] = DrugaCzesc;
+                    nowaPopulacja[mainCounter + 1][i] = DrugaCzesc;
                 }
 
                 for(int i = 0; i < CzescPierwszejSekwencji.Count(); i++)
                 {
-                    this.Populacja[pierwszyIndex][i] = CzescDrugiejSekwencji[i] + this.Populacja[pierwszyIndex][i];
-                    this.Populacja[drugiIndex][i] = CzescPierwszejSekwencji[i] + this.Populacja[drugiIndex][i];
+                    nowaPopulacja[mainCounter][i] = CzescDrugiejSekwencji[i] + nowaPopulacja[mainCounter][i];
+                    nowaPopulacja[mainCounter + 1][i] = CzescPierwszejSekwencji[i] + nowaPopulacja[mainCounter + 1][i];
                 }
 
-                this.Populacja[pierwszyIndex] = PoprawBledy(this.Populacja[pierwszyIndex]);
-                this.Populacja[pierwszyIndex] = UsunPusteKolumny(this.Populacja[pierwszyIndex]);
+                nowaPopulacja[mainCounter] = PoprawBledy(nowaPopulacja[mainCounter]);
+                nowaPopulacja[mainCounter] = UsunPusteKolumny(nowaPopulacja[mainCounter]);
 
-                this.Populacja[drugiIndex] = PoprawBledy(this.Populacja[drugiIndex]);
-                this.Populacja[drugiIndex] = UsunPusteKolumny(this.Populacja[drugiIndex]);
-
-
-                listaWybranych.RemoveAt(0);
-                listaWybranych.RemoveAt(0);
+                nowaPopulacja[mainCounter + 1] = PoprawBledy(nowaPopulacja[mainCounter + 1]);
+                nowaPopulacja[mainCounter + 1] = UsunPusteKolumny(nowaPopulacja[mainCounter + 1]);
             }
+
+            return nowaPopulacja;
         }
 
+        public void uzupelnijPopulacje(List<List<string>> nowaPopulacja, List<int> listaWybranych)
+        {
+            for(int i = 0; i < listaWybranych.Count; i++)
+            {
+                if(nowaPopulacja.Count == this.WielkoscPopulacji)
+                {
+                    break;
+                }
+
+                nowaPopulacja.Add(new List<string>(Populacja[listaWybranych[i]]));
+            }
+
+            if(nowaPopulacja.Count < this.WielkoscPopulacji)
+            {
+                Random r = new Random();
+
+                while(nowaPopulacja.Count != this.WielkoscPopulacji)
+                {
+                    nowaPopulacja.Add(new List<string>(Populacja[r.Next(Populacja.Count() - 2)]));
+                }
+            }
+
+            this.Populacja = nowaPopulacja;
+        }
         public void Krzyzowanie(List<int> listaWybranych)
         {
-            //listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
-            //PierwszeKrzyzowanie(listaWybranych);
-
             listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
-            DrugieKrzyzowanie(listaWybranych);
+            var nowaPopulacja = PierwszeKrzyzowanie(listaWybranych);
+
+            nowaPopulacja = DrugieKrzyzowanie(nowaPopulacja);
+            uzupelnijPopulacje(nowaPopulacja, listaWybranych);
         }
 
         public void StartMeta(BackgroundWorker worker, DoWorkEventArgs e, ManualResetEvent wstrzymajMeta)
