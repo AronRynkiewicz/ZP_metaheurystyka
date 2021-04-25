@@ -379,143 +379,7 @@ namespace ZP_metaheurystyka
             return noweSekwencje;
         }
 
-        public List<List<string>> PierwszeKrzyzowanie(List<int> listaWybranych)
-        {
-            List<List<string>> nowaPopulacja = new List<List<string>>();
-            int pierwszyIndex = 0;
-            int drugiIndex = 0;
-            bool flaga = false;
-            Random r = new Random();
-
-            if((listaWybranych.Count() / 2) % 1 != 0)
-            {
-                flaga = true;
-            }
-
-            while (listaWybranych.Count() != 0)
-            {
-                List<string> tmpDopasowanie = new List<string>();
-                if(flaga == true)
-                {
-                    pierwszyIndex = 1;
-                    drugiIndex = listaWybranych.Count - 1;
-
-                }
-                else
-                {
-                    pierwszyIndex = listaWybranych[0];
-                    drugiIndex = listaWybranych[1];
-                }
-
-                int indexZamiany = r.Next(2);
-
-                for(int i = 0; i < this.Populacja[pierwszyIndex].Count(); i++)
-                {
-                    if (i % 2 == indexZamiany)
-                    {
-                        tmpDopasowanie.Add(this.Populacja[pierwszyIndex][i]);
-                    }
-                    else
-                    {
-                        tmpDopasowanie.Add(this.Populacja[drugiIndex][i]);
-                    }
-                }
-
-                tmpDopasowanie = PoprawBledy(tmpDopasowanie);
-                tmpDopasowanie = UsunPusteKolumny(tmpDopasowanie);
-
-                nowaPopulacja.Add(new List<string>(tmpDopasowanie));
-
-                if(flaga == true)
-                {
-                    flaga = false;
-                    continue;
-                }
-
-                listaWybranych.RemoveAt(0);
-                listaWybranych.RemoveAt(0);
-            }
-
-            return nowaPopulacja;
-        }
-
-        public List<List<string>> DrugieKrzyzowanie(List<List<string>> nowaPopulacja)
-        {
-            Random r = new Random();
-
-           for(int mainCounter = 0; mainCounter < nowaPopulacja.Count; mainCounter += 2)
-           {
-                int indexZamiany = r.Next((this.OryginalneSekwencje[0].Count() - 2));
-                List<string> CzescPierwszejSekwencji = new List<string>();
-                List<string> CzescDrugiejSekwencji = new List<string>();
-
-
-                for (int i = 0; i < nowaPopulacja[mainCounter].Count(); i++)
-                {
-                    string PierwszaCzesc = "";
-                    string DrugaCzesc = "";
-                    int counter = 0;
-                    for(int j = 0; j < nowaPopulacja[mainCounter][i].Count(); j++)
-                    {
-                        char tmp = nowaPopulacja[mainCounter][i][j];
-                        if (counter >= indexZamiany)
-                        {
-                            DrugaCzesc += tmp;
-                        }
-                        else
-                        {
-                            PierwszaCzesc += tmp;
-                        }
-
-                        if (tmp != '_')
-                        {
-                            counter += 1;
-                        }
-                    }
-                    CzescPierwszejSekwencji.Add(PierwszaCzesc);
-                    nowaPopulacja[mainCounter][i] = DrugaCzesc;
-
-                    PierwszaCzesc = "";
-                    DrugaCzesc = "";
-                    counter = 0;
-                    for (int j = 0; j < nowaPopulacja[mainCounter + 1][i].Count(); j++)
-                    {
-                        char tmp = nowaPopulacja[mainCounter + 1][i][j];
-                        if (counter >= indexZamiany)
-                        {
-                            DrugaCzesc += tmp;
-                        }
-                        else
-                        {
-                            PierwszaCzesc += tmp;
-                        }
-
-                        if (tmp != '_')
-                        {
-                            counter += 1;
-                        }
-                    }
-                    CzescDrugiejSekwencji.Add(PierwszaCzesc);
-                    nowaPopulacja[mainCounter + 1][i] = DrugaCzesc;
-                }
-
-                for(int i = 0; i < CzescPierwszejSekwencji.Count(); i++)
-                {
-                    nowaPopulacja[mainCounter][i] = CzescDrugiejSekwencji[i] + nowaPopulacja[mainCounter][i];
-                    nowaPopulacja[mainCounter + 1][i] = CzescPierwszejSekwencji[i] + nowaPopulacja[mainCounter + 1][i];
-                }
-
-                nowaPopulacja[mainCounter] = PoprawBledy(nowaPopulacja[mainCounter]);
-                nowaPopulacja[mainCounter] = UsunPusteKolumny(nowaPopulacja[mainCounter]);
-
-                nowaPopulacja[mainCounter + 1] = PoprawBledy(nowaPopulacja[mainCounter + 1]);
-                nowaPopulacja[mainCounter + 1] = UsunPusteKolumny(nowaPopulacja[mainCounter + 1]);
-            }
-
-            return nowaPopulacja;
-        }
-
-        public List<List<string>> DrugieKrzyzowanie2(List<int> listaWybranych)
+        public List<List<string>> DrugieKrzyzowanie(List<int> listaWybranych)
         {
             Random r = new Random();
             List<List<string>> nowaPopulacja = new List<List<string>>();
@@ -526,18 +390,16 @@ namespace ZP_metaheurystyka
                 List<string> CzescPierwszejSekwencji = new List<string>();
                 List<string> CzescDrugiejSekwencji = new List<string>();
 
-
                 for (int i = 0; i < this.Populacja[listaWybranych[mainCounter]].Count(); i++)
                 {
                     string PierwszaCzesc = "";
-                    string DrugaCzesc = "";
                     int counter = 0;
                     for (int j = 0; j < this.Populacja[listaWybranych[mainCounter]][i].Count(); j++)
                     {
                         char tmp = this.Populacja[listaWybranych[mainCounter]][i][j];
                         if (counter >= indexZamiany)
                         {
-                            DrugaCzesc += tmp;
+                            break;
                         }
                         else
                         {
@@ -558,10 +420,6 @@ namespace ZP_metaheurystyka
                         {
                             PierwszaCzesc += tmp;
                         }
-                        else
-                        {
-                            DrugaCzesc = tmp + DrugaCzesc;
-                        }
 
                         if (tmp != '_')
                         {
@@ -569,24 +427,17 @@ namespace ZP_metaheurystyka
                         }
                     }
                     CzescDrugiejSekwencji.Add(PierwszaCzesc);
-                    CzescPierwszejSekwencji.Add(DrugaCzesc);
                 }
 
                 List<string> tmp1 = new List<string>();
-                List<string> tmp2 = new List<string>();
-                for (int i = 0; i < CzescPierwszejSekwencji.Count(); i++)
+                for (int i = 0; i < CzescDrugiejSekwencji.Count(); i++)
                 {
                     tmp1.Add(CzescDrugiejSekwencji[i]);
-                    tmp2.Add(CzescPierwszejSekwencji[i]);
                 }
                 nowaPopulacja.Add(new List<string>(tmp1));
-                nowaPopulacja.Add(new List<string>(tmp2));
 
-                nowaPopulacja[mainCounter] = PoprawBledy(nowaPopulacja[mainCounter]);
-                nowaPopulacja[mainCounter] = UsunPusteKolumny(nowaPopulacja[mainCounter]);
-
-                nowaPopulacja[mainCounter + 1] = PoprawBledy(nowaPopulacja[mainCounter + 1]);
-                nowaPopulacja[mainCounter + 1] = UsunPusteKolumny(nowaPopulacja[mainCounter + 1]);
+                nowaPopulacja[nowaPopulacja.Count() - 1] = PoprawBledy(nowaPopulacja[nowaPopulacja.Count() - 1]);
+                nowaPopulacja[nowaPopulacja.Count() - 1] = UsunPusteKolumny(nowaPopulacja[nowaPopulacja.Count() - 1]);
             }
 
             return nowaPopulacja;
@@ -603,10 +454,20 @@ namespace ZP_metaheurystyka
                 nowaPopulacja.Add(new List<string>(Populacja[listaWybranych[i]]));
             }
 
+            Random r = new Random();
+
+            int wylosowanaLiczba = r.Next(100);
+
+            if (wylosowanaLiczba <= this.CzestotliwoscMutacji)
+            {
+                string losowaSekwencja = WygenerujLosowaSekwencje();
+
+                var osobnik = DopasujSekwencje(losowaSekwencja);
+                nowaPopulacja.Add(osobnik);
+            }
+
             if(nowaPopulacja.Count < this.WielkoscPopulacji)
             {
-                Random r = new Random();
-
                 while(nowaPopulacja.Count != this.WielkoscPopulacji)
                 {
                     nowaPopulacja.Add(new List<string>(Populacja[r.Next(Populacja.Count() - 2)]));
@@ -618,10 +479,8 @@ namespace ZP_metaheurystyka
         public void Krzyzowanie(List<int> listaWybranych)
         {
             listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
-            //var nowaPopulacja = PierwszeKrzyzowanie(listaWybranych);
 
-            //nowaPopulacja = DrugieKrzyzowanie(nowaPopulacja);
-            var nowaPopulacja = DrugieKrzyzowanie2(listaWybranych);
+            var nowaPopulacja = DrugieKrzyzowanie(listaWybranych);
             uzupelnijPopulacje(nowaPopulacja, listaWybranych);
         }
 
@@ -678,8 +537,7 @@ namespace ZP_metaheurystyka
                 }
                 Krzyzowanie(listaWybranych);
                 Mutacje();
-                //obecnaSredniaJakosc = WybierzNajlepsze();
-                obecnaSredniaJakosc = this.NajlepszaJakosc;
+                obecnaSredniaJakosc = WybierzNajlepsze();
 
                 if (SredniaJakosc.Count == 10)
                 {
