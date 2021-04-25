@@ -92,9 +92,9 @@ namespace ZP_metaheurystyka
             this.label4.ForeColor = System.Drawing.SystemColors.Window;
             this.label4.Location = new System.Drawing.Point(54, 229);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(160, 20);
+            this.label4.Size = new System.Drawing.Size(118, 20);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Częstotliwość mutacji";
+            this.label4.Text = "Procent mutacji";
             // 
             // LiczbaIteracjiTextBox
             // 
@@ -130,9 +130,9 @@ namespace ZP_metaheurystyka
             this.label5.ForeColor = System.Drawing.SystemColors.Window;
             this.label5.Location = new System.Drawing.Point(572, 235);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 20);
+            this.label5.Size = new System.Drawing.Size(115, 20);
             this.label5.TabIndex = 9;
-            this.label5.Text = "[na przykład: 0,01]";
+            this.label5.Text = "[na przykład: 3]";
             // 
             // label6
             // 

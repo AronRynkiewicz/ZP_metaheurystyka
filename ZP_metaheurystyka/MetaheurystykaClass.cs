@@ -515,6 +515,82 @@ namespace ZP_metaheurystyka
             return nowaPopulacja;
         }
 
+        public List<List<string>> DrugieKrzyzowanie2(List<int> listaWybranych)
+        {
+            Random r = new Random();
+            List<List<string>> nowaPopulacja = new List<List<string>>();
+
+            for (int mainCounter = 0; mainCounter < listaWybranych.Count; mainCounter += 2)
+            {
+                int indexZamiany = r.Next(1, (this.OryginalneSekwencje[0].Count() - 2));
+                List<string> CzescPierwszejSekwencji = new List<string>();
+                List<string> CzescDrugiejSekwencji = new List<string>();
+
+
+                for (int i = 0; i < this.Populacja[listaWybranych[mainCounter]].Count(); i++)
+                {
+                    string PierwszaCzesc = "";
+                    string DrugaCzesc = "";
+                    int counter = 0;
+                    for (int j = 0; j < this.Populacja[listaWybranych[mainCounter]][i].Count(); j++)
+                    {
+                        char tmp = this.Populacja[listaWybranych[mainCounter]][i][j];
+                        if (counter >= indexZamiany)
+                        {
+                            DrugaCzesc += tmp;
+                        }
+                        else
+                        {
+                            PierwszaCzesc += tmp;
+                        }
+
+                        if (tmp != '_')
+                        {
+                            counter += 1;
+                        }
+                    }
+
+                    counter = 0;
+                    for (int j = 0; j < this.Populacja[listaWybranych[mainCounter + 1]][i].Count(); j++)
+                    {
+                        char tmp = this.Populacja[listaWybranych[mainCounter + 1]][i][j];
+                        if (counter >= indexZamiany)
+                        {
+                            PierwszaCzesc += tmp;
+                        }
+                        else
+                        {
+                            DrugaCzesc = tmp + DrugaCzesc;
+                        }
+
+                        if (tmp != '_')
+                        {
+                            counter += 1;
+                        }
+                    }
+                    CzescDrugiejSekwencji.Add(PierwszaCzesc);
+                    CzescPierwszejSekwencji.Add(DrugaCzesc);
+                }
+
+                List<string> tmp1 = new List<string>();
+                List<string> tmp2 = new List<string>();
+                for (int i = 0; i < CzescPierwszejSekwencji.Count(); i++)
+                {
+                    tmp1.Add(CzescDrugiejSekwencji[i]);
+                    tmp2.Add(CzescPierwszejSekwencji[i]);
+                }
+                nowaPopulacja.Add(new List<string>(tmp1));
+                nowaPopulacja.Add(new List<string>(tmp2));
+
+                nowaPopulacja[mainCounter] = PoprawBledy(nowaPopulacja[mainCounter]);
+                nowaPopulacja[mainCounter] = UsunPusteKolumny(nowaPopulacja[mainCounter]);
+
+                nowaPopulacja[mainCounter + 1] = PoprawBledy(nowaPopulacja[mainCounter + 1]);
+                nowaPopulacja[mainCounter + 1] = UsunPusteKolumny(nowaPopulacja[mainCounter + 1]);
+            }
+
+            return nowaPopulacja;
+        }
         public void uzupelnijPopulacje(List<List<string>> nowaPopulacja, List<int> listaWybranych)
         {
             for(int i = 0; i < listaWybranych.Count; i++)
@@ -542,16 +618,47 @@ namespace ZP_metaheurystyka
         public void Krzyzowanie(List<int> listaWybranych)
         {
             listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
-            var nowaPopulacja = PierwszeKrzyzowanie(listaWybranych);
+            //var nowaPopulacja = PierwszeKrzyzowanie(listaWybranych);
 
-            nowaPopulacja = DrugieKrzyzowanie(nowaPopulacja);
+            //nowaPopulacja = DrugieKrzyzowanie(nowaPopulacja);
+            var nowaPopulacja = DrugieKrzyzowanie2(listaWybranych);
             uzupelnijPopulacje(nowaPopulacja, listaWybranych);
+        }
+
+        public void Mutacje()
+        {
+            Random r = new Random();
+            int wylosowanaLiczba = r.Next(100);
+
+            if (wylosowanaLiczba <= this.CzestotliwoscMutacji)
+            {
+                int index = r.Next(this.Populacja.Count() - 1);
+                int sekwencja = r.Next(this.Populacja[index].Count());
+                int pozycja = r.Next(this.Populacja[index][sekwencja].Count());
+
+                List<char> tmp = new List<char>(this.Populacja[index][sekwencja]);
+                tmp.Insert(pozycja, '_');
+                this.Populacja[index][sekwencja] = new string(tmp.ToArray());
+
+                this.Populacja[index] = PoprawBledy(this.Populacja[index]);
+                this.Populacja[index] = UsunPusteKolumny(this.Populacja[index]);
+            }
         }
 
         public void StartMeta(BackgroundWorker worker, DoWorkEventArgs e, ManualResetEvent wstrzymajMeta)
         {
             Queue<int> SredniaJakosc = new Queue<int>();
             int obecnaSredniaJakosc = 0;
+
+            if (this.CzestotliwoscMutacji < 1)
+            {
+                this.CzestotliwoscMutacji = 1;
+            }
+
+            if(this.CzestotliwoscMutacji > 100)
+            {
+                this.CzestotliwoscMutacji = 100;
+            }
 
             StworzPopulacje();
             WybierzNajlepsze();
@@ -570,9 +677,11 @@ namespace ZP_metaheurystyka
                     listaWybranych.RemoveAt(0);
                 }
                 Krzyzowanie(listaWybranych);
-                obecnaSredniaJakosc = WybierzNajlepsze();
+                Mutacje();
+                //obecnaSredniaJakosc = WybierzNajlepsze();
+                obecnaSredniaJakosc = this.NajlepszaJakosc;
 
-                if(SredniaJakosc.Count == 10)
+                if (SredniaJakosc.Count == 10)
                 {
                     SredniaJakosc.Dequeue();
                 }
