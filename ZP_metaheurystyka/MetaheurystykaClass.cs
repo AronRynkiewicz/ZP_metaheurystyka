@@ -379,6 +379,66 @@ namespace ZP_metaheurystyka
             return noweSekwencje;
         }
 
+        public List<List<string>> PierwszeKrzyzowanie(List<int> listaWybranych)
+        {
+            List<List<string>> nowaPopulacja = new List<List<string>>();
+            int pierwszyIndex = 0;
+            int drugiIndex = 0;
+            bool flaga = false;
+            Random r = new Random();
+
+            if ((listaWybranych.Count() / 2) % 1 != 0)
+            {
+                flaga = true;
+            }
+
+            while (listaWybranych.Count() != 0)
+            {
+                List<string> tmpDopasowanie = new List<string>();
+                if (flaga == true)
+                {
+                    pierwszyIndex = 1;
+                    drugiIndex = listaWybranych.Count - 1;
+
+                }
+                else
+                {
+                    pierwszyIndex = listaWybranych[0];
+                    drugiIndex = listaWybranych[1];
+                }
+
+                int indexZamiany = r.Next(2);
+
+                for (int i = 0; i < this.Populacja[pierwszyIndex].Count(); i++)
+                {
+                    if (i % 2 == indexZamiany)
+                    {
+                        tmpDopasowanie.Add(this.Populacja[pierwszyIndex][i]);
+                    }
+                    else
+                    {
+                        tmpDopasowanie.Add(this.Populacja[drugiIndex][i]);
+                    }
+                }
+
+                tmpDopasowanie = PoprawBledy(tmpDopasowanie);
+                tmpDopasowanie = UsunPusteKolumny(tmpDopasowanie);
+
+                nowaPopulacja.Add(new List<string>(tmpDopasowanie));
+
+                if (flaga == true)
+                {
+                    flaga = false;
+                    continue;
+                }
+
+                listaWybranych.RemoveAt(0);
+                listaWybranych.RemoveAt(0);
+            }
+
+            return nowaPopulacja;
+        }
+
         public List<List<string>> DrugieKrzyzowanie(List<int> listaWybranych)
         {
             Random r = new Random();
@@ -442,6 +502,7 @@ namespace ZP_metaheurystyka
 
             return nowaPopulacja;
         }
+
         public void uzupelnijPopulacje(List<List<string>> nowaPopulacja, List<int> listaWybranych)
         {
             for(int i = 0; i < listaWybranych.Count; i++)
@@ -476,11 +537,23 @@ namespace ZP_metaheurystyka
 
             this.Populacja = nowaPopulacja;
         }
+
         public void Krzyzowanie(List<int> listaWybranych)
         {
             listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
+            List<List<string>> nowaPopulacja = new List<List<string>>(); 
+            Random r = new Random();
+            int wylosowaneKrzyzowanie = r.Next(100);
 
-            var nowaPopulacja = DrugieKrzyzowanie(listaWybranych);
+            if(wylosowaneKrzyzowanie <= 30)
+            {
+                nowaPopulacja = PierwszeKrzyzowanie(listaWybranych);
+            }
+            else
+            {
+                nowaPopulacja = DrugieKrzyzowanie(listaWybranych);
+            }
+
             uzupelnijPopulacje(nowaPopulacja, listaWybranych);
         }
 
