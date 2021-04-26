@@ -94,12 +94,12 @@ namespace ZP_metaheurystyka
                     }
                 }
 
-                if(licznik == dopasowanie.Count())
+                if (licznik == dopasowanie.Count())
                 {
                     continue;
                 }
 
-                for(int index = 0; index < dopasowanie.Count(); index++)
+                for (int index = 0; index < dopasowanie.Count(); index++)
                 {
                     noweDopasowanie[index].Add(dopasowanie[index][pos]);
                 }
@@ -162,6 +162,7 @@ namespace ZP_metaheurystyka
                 Populacja.Add(osobnik);
             }
         }
+
         public int ObliczJakoscDopasowania(List<string> dopasowanie)
         {
             int obecna_jakosc = 0;
@@ -411,7 +412,8 @@ namespace ZP_metaheurystyka
 
                 for (int i = 0; i < this.Populacja[pierwszyIndex].Count(); i++)
                 {
-                    if (i % 2 == indexZamiany)
+                    int wylosowanaLiczba = r.Next(2);
+                    if (wylosowanaLiczba == 0)
                     {
                         tmpDopasowanie.Add(this.Populacja[pierwszyIndex][i]);
                     }
@@ -611,6 +613,7 @@ namespace ZP_metaheurystyka
                 Krzyzowanie(listaWybranych);
                 Mutacje();
                 obecnaSredniaJakosc = WybierzNajlepsze();
+                obecnaSredniaJakosc = this.NajlepszaJakosc;
 
                 if (SredniaJakosc.Count == 10)
                 {
