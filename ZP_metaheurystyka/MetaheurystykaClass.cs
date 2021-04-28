@@ -20,6 +20,8 @@ namespace ZP_metaheurystyka
         public List<string> NajlepszeDopasowanie { get; set; }
         public int NajlepszaJakosc { get; set; }
 
+        public List<int> obecnaListaJakosci { get; set; }
+
         public MetaheurystykaClass(List<string> sekwencje, List<char> alfabet, int iteracje, int populacja, double krzyzowanie, double mutacje)
         {
             this.OryginalneSekwencje = new List<string>();
@@ -220,7 +222,9 @@ namespace ZP_metaheurystyka
             int wielkoscRuletki = (int)((this.Populacja.Count() * this.ProcentKrzyzowania) / 100);
             var listaJakosci = UzyskajJakoscDlaPopulacji();
 
-            if(wielkoscRuletki < 2)
+            this.obecnaListaJakosci = new List<int>(listaJakosci);
+
+            if (wielkoscRuletki < 2)
             {
                 wielkoscRuletki = 2;
             }
@@ -425,8 +429,12 @@ namespace ZP_metaheurystyka
 
                 tmpDopasowanie = PoprawBledy(tmpDopasowanie);
                 tmpDopasowanie = UsunPusteKolumny(tmpDopasowanie);
+                int jakosc = ObliczJakoscDopasowania(tmpDopasowanie);
 
-                nowaPopulacja.Add(new List<string>(tmpDopasowanie));
+                if(jakosc <= this.obecnaListaJakosci[pierwszyIndex] || jakosc <= this.obecnaListaJakosci[drugiIndex])
+                {
+                    nowaPopulacja.Add(new List<string>(tmpDopasowanie));
+                }
 
                 if (flaga == true)
                 {
@@ -496,10 +504,17 @@ namespace ZP_metaheurystyka
                 {
                     tmp1.Add(CzescDrugiejSekwencji[i]);
                 }
-                nowaPopulacja.Add(new List<string>(tmp1));
 
-                nowaPopulacja[nowaPopulacja.Count() - 1] = PoprawBledy(nowaPopulacja[nowaPopulacja.Count() - 1]);
-                nowaPopulacja[nowaPopulacja.Count() - 1] = UsunPusteKolumny(nowaPopulacja[nowaPopulacja.Count() - 1]);
+                int jakosc = ObliczJakoscDopasowania(tmp1);
+
+
+                if(jakosc <= this.obecnaListaJakosci[listaWybranych[mainCounter]] || jakosc <= this.obecnaListaJakosci[listaWybranych[mainCounter + 1]])
+                {
+                    nowaPopulacja.Add(new List<string>(tmp1));
+
+                    nowaPopulacja[nowaPopulacja.Count() - 1] = PoprawBledy(nowaPopulacja[nowaPopulacja.Count() - 1]);
+                    nowaPopulacja[nowaPopulacja.Count() - 1] = UsunPusteKolumny(nowaPopulacja[nowaPopulacja.Count() - 1]);
+                }
             }
 
             return nowaPopulacja;
@@ -533,7 +548,11 @@ namespace ZP_metaheurystyka
             {
                 while(nowaPopulacja.Count != this.WielkoscPopulacji)
                 {
-                    nowaPopulacja.Add(new List<string>(Populacja[r.Next(Populacja.Count() - 2)]));
+                    int index = r.Next(Populacja.Count() - 2);
+                    if (!listaWybranych.Contains(index))
+                    {
+                        nowaPopulacja.Add(new List<string>(Populacja[index]));
+                    }
                 }
             }
 
