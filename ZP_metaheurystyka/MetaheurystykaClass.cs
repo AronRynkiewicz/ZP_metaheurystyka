@@ -429,12 +429,8 @@ namespace ZP_metaheurystyka
 
                 tmpDopasowanie = PoprawBledy(tmpDopasowanie);
                 tmpDopasowanie = UsunPusteKolumny(tmpDopasowanie);
-                int jakosc = ObliczJakoscDopasowania(tmpDopasowanie);
 
-                if(jakosc <= this.obecnaListaJakosci[pierwszyIndex] || jakosc <= this.obecnaListaJakosci[drugiIndex])
-                {
-                    nowaPopulacja.Add(new List<string>(tmpDopasowanie));
-                }
+                nowaPopulacja.Add(new List<string>(tmpDopasowanie));
 
                 if (flaga == true)
                 {
@@ -505,16 +501,12 @@ namespace ZP_metaheurystyka
                     tmp1.Add(CzescDrugiejSekwencji[i]);
                 }
 
-                int jakosc = ObliczJakoscDopasowania(tmp1);
+                
+                nowaPopulacja.Add(new List<string>(tmp1));
 
-
-                if(jakosc <= this.obecnaListaJakosci[listaWybranych[mainCounter]] || jakosc <= this.obecnaListaJakosci[listaWybranych[mainCounter + 1]])
-                {
-                    nowaPopulacja.Add(new List<string>(tmp1));
-
-                    nowaPopulacja[nowaPopulacja.Count() - 1] = PoprawBledy(nowaPopulacja[nowaPopulacja.Count() - 1]);
-                    nowaPopulacja[nowaPopulacja.Count() - 1] = UsunPusteKolumny(nowaPopulacja[nowaPopulacja.Count() - 1]);
-                }
+                nowaPopulacja[nowaPopulacja.Count() - 1] = PoprawBledy(nowaPopulacja[nowaPopulacja.Count() - 1]);
+                nowaPopulacja[nowaPopulacja.Count() - 1] = UsunPusteKolumny(nowaPopulacja[nowaPopulacja.Count() - 1]);
+                
             }
 
             return nowaPopulacja;
