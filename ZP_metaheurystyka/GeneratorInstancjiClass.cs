@@ -171,10 +171,7 @@ namespace ZP_metaheurystyka
         {
             int obecna_jakosc = 0;
 
-            for(int i = 0; i < this.Sekwencje.Count(); i++)
-            {
-                obecna_jakosc += Sekwencje[i].Count(f => f == '_');
-            }
+            obecna_jakosc = Sekwencje[0].Count();
 
             return obecna_jakosc;
         }

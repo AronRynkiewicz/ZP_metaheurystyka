@@ -169,10 +169,7 @@ namespace ZP_metaheurystyka
         {
             int obecna_jakosc = 0;
 
-            for (int i = 0; i < dopasowanie.Count(); i++)
-            {
-                obecna_jakosc += dopasowanie[i].Count(f => f == '_');
-            }
+            obecna_jakosc = dopasowanie[0].Count();
 
             return obecna_jakosc;
         }
