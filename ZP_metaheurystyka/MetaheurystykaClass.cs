@@ -161,7 +161,7 @@ namespace ZP_metaheurystyka
                 string losowaSekwencja = WygenerujLosowaSekwencje();
 
                 var osobnik = DopasujSekwencje(losowaSekwencja);
-                Populacja.Add(osobnik);
+                Populacja.Add(new List<string>(osobnik));
             }
         }
 
@@ -196,10 +196,14 @@ namespace ZP_metaheurystyka
         public List<int> UzyskajJakoscDlaPopulacji()
         {
             List<int> listaJakosci = new List<int>();
-            int mnoznik = (100 * this.Populacja[0][0].Count());
             for (int i = 0; i < Populacja.Count(); i++)
             {
-                double tmp = 1.0 / ObliczJakoscDopasowania(Populacja[i]) * mnoznik;
+                double tmp = this.Populacja.Count() / (1.0 / ObliczJakoscDopasowania(Populacja[i]));
+
+                if(tmp > 100)
+                {
+                    tmp /= 100;
+                }
 
                 if(tmp < 1)
                 {
@@ -211,6 +215,7 @@ namespace ZP_metaheurystyka
 
             return listaJakosci;
         }
+
         public List<int> Ruletka()
         {
             HashSet<int> wybrane = new HashSet<int>();
