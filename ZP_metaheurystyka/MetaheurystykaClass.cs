@@ -248,6 +248,7 @@ namespace ZP_metaheurystyka
                 {
                     listaWybranych.Add(i);
                 }
+                listaWybranych = listaWybranych.OrderBy(a => Guid.NewGuid()).ToList();
                 return listaWybranych;
             }
 
@@ -266,6 +267,7 @@ namespace ZP_metaheurystyka
             }
             listaWybranych.AddRange(wybrane);
 
+            listaWybranych = listaWybranych.OrderBy(a => Guid.NewGuid()).ToList();
             return listaWybranych;
         }
 
@@ -596,6 +598,7 @@ namespace ZP_metaheurystyka
         {
             Queue<int> SredniaJakosc = new Queue<int>();
             int obecnaSredniaJakosc = 0;
+            int granica = 0;
 
             if (this.CzestotliwoscMutacji < 1)
             {
@@ -625,7 +628,18 @@ namespace ZP_metaheurystyka
                 }
                 Krzyzowanie(listaWybranych);
                 Mutacje();
+                int poprzedniaJakosc = this.NajlepszaJakosc;
                 obecnaSredniaJakosc = WybierzNajlepsze();
+
+                if (poprzedniaJakosc == this.NajlepszaJakosc)
+                {
+                    granica++;
+                }
+                else
+                {
+                    granica = 0;
+                }
+
                 obecnaSredniaJakosc = this.NajlepszaJakosc;
 
                 if (SredniaJakosc.Count == 10)
@@ -634,6 +648,14 @@ namespace ZP_metaheurystyka
                 }
                 SredniaJakosc.Enqueue(obecnaSredniaJakosc);
                 worker.ReportProgress(i, new List<int>(SredniaJakosc));
+                
+                if(granica == 25)
+                {
+                    granica = 0;
+                    Populacja.Clear();
+                    StworzPopulacje();
+                    WybierzNajlepsze();
+                }
             }
         }
     }
