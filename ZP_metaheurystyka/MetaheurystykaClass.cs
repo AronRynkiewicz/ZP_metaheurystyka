@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.IO;
 
 namespace ZP_metaheurystyka
 {
@@ -21,6 +22,8 @@ namespace ZP_metaheurystyka
         public int NajlepszaJakosc { get; set; }
 
         public List<int> obecnaListaJakosci { get; set; }
+
+        private static readonly Random getrandom = new Random();
 
         public MetaheurystykaClass(List<string> sekwencje, List<char> alfabet, int iteracje, int populacja, double krzyzowanie, double mutacje)
         {
@@ -39,12 +42,12 @@ namespace ZP_metaheurystyka
 
         public string WygenerujLosowaSekwencje()
         {
-            Random losowyIndex = new Random();
+            //Random losowyIndex = new Random();
             string losowaSekwencja = string.Empty;
 
             for(int i = 0; i < this.OryginalneSekwencje[0].Count() * 10; i++)
             {
-                losowaSekwencja += Alfabet[losowyIndex.Next(Alfabet.Count)];
+                losowaSekwencja += Alfabet[getrandom.Next(Alfabet.Count)];
             }
 
             return losowaSekwencja;
@@ -156,7 +159,7 @@ namespace ZP_metaheurystyka
         {
             Populacja = new List<List<string>>();
 
-            for(int i = 0; i < this.WielkoscPopulacji; i++)
+            for (int i = 0; i < this.WielkoscPopulacji; i++)
             {
                 string losowaSekwencja = WygenerujLosowaSekwencje();
 
@@ -260,7 +263,8 @@ namespace ZP_metaheurystyka
                 }
             }
 
-            Random losowyIndex = new Random();
+            //Random losowyIndex = new Random();
+            Random losowyIndex = getrandom;
             while (wybrane.Count() != wielkoscRuletki)
             {
                 wybrane.Add(listaDoLosowania[losowyIndex.Next(listaDoLosowania.Count())]);
@@ -394,7 +398,8 @@ namespace ZP_metaheurystyka
             int pierwszyIndex = 0;
             int drugiIndex = 0;
             bool flaga = false;
-            Random r = new Random();
+            //Random r = new Random();
+            Random r = getrandom;
 
             if ((listaWybranych.Count() / 2) % 1 != 0)
             {
@@ -451,7 +456,8 @@ namespace ZP_metaheurystyka
 
         public List<List<string>> DrugieKrzyzowanie(List<int> listaWybranych)
         {
-            Random r = new Random();
+            //Random r = new Random();
+            Random r = getrandom;
             List<List<string>> nowaPopulacja = new List<List<string>>();
 
             for (int mainCounter = 0; mainCounter < listaWybranych.Count; mainCounter += 2)
@@ -528,7 +534,8 @@ namespace ZP_metaheurystyka
                 nowaPopulacja.Add(new List<string>(Populacja[listaWybranych[i]]));
             }
 
-            Random r = new Random();
+            //Random r = new Random();
+            Random r = getrandom;
 
             int wylosowanaLiczba = r.Next(100);
 
@@ -558,8 +565,9 @@ namespace ZP_metaheurystyka
         public void Krzyzowanie(List<int> listaWybranych)
         {
             listaWybranych = listaWybranych.OrderBy(x => Guid.NewGuid()).ToList();
-            List<List<string>> nowaPopulacja = new List<List<string>>(); 
-            Random r = new Random();
+            List<List<string>> nowaPopulacja = new List<List<string>>();
+            //Random r = new Random();
+            Random r = getrandom;
             int wylosowaneKrzyzowanie = r.Next(100);
 
             if(wylosowaneKrzyzowanie <= 30)
@@ -576,7 +584,8 @@ namespace ZP_metaheurystyka
 
         public void Mutacje()
         {
-            Random r = new Random();
+            //Random r = new Random();
+            Random r = getrandom;
             int wylosowanaLiczba = r.Next(100);
 
             if (wylosowanaLiczba <= this.CzestotliwoscMutacji)
