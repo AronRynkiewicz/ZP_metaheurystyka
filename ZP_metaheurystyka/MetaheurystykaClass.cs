@@ -205,7 +205,7 @@ namespace ZP_metaheurystyka
 
                 if(tmp > 100)
                 {
-                    tmp /= 100;
+                    tmp = 100;
                 }
 
                 if(tmp < 1)
