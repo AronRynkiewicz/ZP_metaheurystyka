@@ -574,7 +574,7 @@ namespace ZP_metaheurystyka
             {
                 nowaPopulacja = PierwszeKrzyzowanie(listaWybranych);
             }
-            else
+            else if (wylosowaneKrzyzowanie >= 50)
             {
                 nowaPopulacja = DrugieKrzyzowanie(listaWybranych);
             }
